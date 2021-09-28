@@ -1,5 +1,15 @@
-.droppable {
-  height: 50px;
-  width: 50px;
-  background: "grey";
+.game {
+  border: 1px solid black;
+  width: clamp(30vw, 50rem, 90vw);
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.pickable-pegs {
+  display: flex;
+  border: 1px solid black;
+  padding: 1rem;
 }

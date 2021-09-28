@@ -9,5 +9,5 @@ export const COLOUR_DATA = {
       colourId: "red",
     },
   },
-  containerOrder: ["red"],
+  containerOrder: ["red", "green", "blue"],
 };
