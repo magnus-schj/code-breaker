@@ -8,6 +8,20 @@
   justify-content: center;
 }
 
+.inserting-row {
+  display: flex;
+}
+
+.peg-holder {
+  border: 1px solid black;
+  height: 3rem;
+  width: 3rem;
+  padding: 0;
+}
+
+.placed-peg {
+}
+
 .pickable-pegs {
   display: flex;
   border: 1px solid black;
