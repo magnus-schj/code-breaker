@@ -9,23 +9,44 @@ import { PegHolder } from "../interfaces";
 import ColourContainer from "./ColourContainer.component";
 const Game: FC = () => {
   const initialState = {
-    red: { id: "red", hex: "#ff0000" },
-    green: { id: "green", hex: "#00ff00" },
-    blue: { id: "blue", hex: "#0000ff" },
+    pickRed: { id: "pickRed", hex: "#ff0000" },
+    pickGreen: { id: "pickGreen", hex: "#00ff00" },
+    pickBlue: { id: "pickBlue", hex: "#0000ff" },
   };
 
-  const initialPegs: PegHolder[] = [
-    { colour: null, id: "holder-0" },
-    { colour: null, id: "holder-1" },
-    { colour: null, id: "holder-2" },
-  ];
+  const initialPegs = {
+    0: { colour: null },
+    1: { colour: null },
+    2: { colour: null },
+  };
   const [colours, setColours] = useState(initialState);
   const [pegHolders, setPegHolders] = useState(initialPegs);
+
+  const onDragEnd = (
+    result: DropResult,
+    pegHolders: any,
+    setPegHolders: any
+  ) => {
+    if (!result.destination) return;
+    const { source, destination } = result;
+    if (destination.droppableId.includes("pick")) return;
+
+    const pegDest = pegHolders[destination.droppableId];
+    setPegHolders({
+      ...pegHolders,
+      [destination.droppableId]: {
+        ...pegDest,
+        colour: colours[source.droppableId].hex,
+      },
+    });
+  };
   return (
     <div className="game">
-      <DragDropContext onDragEnd={(result) => console.log("result:", result)}>
+      <DragDropContext
+        onDragEnd={(result) => onDragEnd(result, pegHolders, setPegHolders)}
+      >
         <div className="inserting-row">
-          {pegHolders.map(({ colour, id }) => {
+          {Object.entries(pegHolders).map(([id, { colour }]) => {
             return (
               <div className="peg-holder" key={id}>
                 <Droppable droppableId={id}>

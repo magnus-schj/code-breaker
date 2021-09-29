@@ -10,6 +10,8 @@
 
 .inserting-row {
   display: flex;
+  padding: 1rem;
+  border: 1px solid black;
 }
 
 .peg-holder {
@@ -17,6 +19,7 @@
   height: 3rem;
   width: 3rem;
   padding: 0;
+  margin: 0.5rem;
 }
 
 .placed-peg {
