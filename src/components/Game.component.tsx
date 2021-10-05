@@ -5,66 +5,46 @@ import {
   Droppable,
   DropResult,
 } from "react-beautiful-dnd";
-import { PegHolder } from "../interfaces";
+import { Colours, PegHolder, PegInputs } from "../interfaces";
 import ColourContainer from "./ColourContainer.component";
+import PegInput from "./PegInput.component";
 const Game: FC = () => {
-  const initialState = {
-    pickRed: { id: "pickRed", hex: "#ff0000" },
-    pickGreen: { id: "pickGreen", hex: "#00ff00" },
-    pickBlue: { id: "pickBlue", hex: "#0000ff" },
+  const initialState: Colours = {
+    pickRed: { id: "pickRed", hsl: "hsl(360,100%,50%)" },
+    pickGreen: { id: "pickGreen", hsl: "hsl(240,100%,50%)" },
+    pickBlue: { id: "pickBlue", hsl: "hsl(129,100%,50%)" },
   };
 
-  const initialPegs = {
-    0: { colour: null },
-    1: { colour: null },
-    2: { colour: null },
+  const initialPegs: PegInputs = {
+    one: { colour: null },
+    two: { colour: null },
+    three: { colour: null },
   };
-  const [colours, setColours] = useState(initialState);
-  const [pegHolders, setPegHolders] = useState(initialPegs);
+  const [colours, setColours] = useState<Colours>(initialState);
+  const [pegInputs, setPegInputs] = useState<PegInputs>(initialPegs);
 
-  const onDragEnd = (
-    result: DropResult,
-    pegHolders: any,
-    setPegHolders: any
-  ) => {
+  const onDragEnd = (result: DropResult, pegInputs: any, setPegInputs: any) => {
     if (!result.destination) return;
     const { source, destination } = result;
     if (destination.droppableId.includes("pick")) return;
 
-    const pegDest = pegHolders[destination.droppableId];
-    setPegHolders({
-      ...pegHolders,
+    const pegDest = pegInputs[destination.droppableId];
+    setPegInputs({
+      ...pegInputs,
       [destination.droppableId]: {
         ...pegDest,
-        colour: colours[source.droppableId].hex,
+        colour: colours[source.droppableId].hsl,
       },
     });
   };
   return (
     <div className="game">
       <DragDropContext
-        onDragEnd={(result) => onDragEnd(result, pegHolders, setPegHolders)}
+        onDragEnd={(result) => onDragEnd(result, pegInputs, setPegInputs)}
       >
         <div className="inserting-row">
-          {Object.entries(pegHolders).map(([id, { colour }]) => {
-            return (
-              <div className="peg-holder" key={id}>
-                <Droppable droppableId={id}>
-                  {(provided, snapshot) => {
-                    return (
-                      <div
-                        ref={provided.innerRef}
-                        style={{
-                          background: colour ? colour : "grey",
-                          height: "100%",
-                          width: "100%",
-                        }}
-                      ></div>
-                    );
-                  }}
-                </Droppable>
-              </div>
-            );
+          {Object.entries(pegInputs).map(([id, { colour }]) => {
+            return <PegInput key={id} colour={colour} id={id} />;
           })}
         </div>
         <div className="pickable-pegs">

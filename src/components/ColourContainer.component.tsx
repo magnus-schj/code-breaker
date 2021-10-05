@@ -19,10 +19,14 @@ const ColourContainer: FC<Props> = ({ id, colour }) => {
         margin: "0.5rem",
       }}
     >
-      <Droppable droppableId={id} key={id}>
+      <Droppable droppableId={id} key={id} isDropDisabled>
         {(provided, snapshot) => {
           return (
-            <div key={id} ref={provided.innerRef} style={{ height: "100%" }}>
+            <div
+              key={id}
+              ref={provided.innerRef}
+              style={{ height: "100%", background: colour.hsl }}
+            >
               <Draggable key={id} draggableId={id} index={0}>
                 {(provided, snapshot) => {
                   return (
@@ -33,7 +37,7 @@ const ColourContainer: FC<Props> = ({ id, colour }) => {
                       style={{
                         userSelect: "none",
                         height: "100%",
-                        background: colour.hex,
+                        background: colour.hsl,
                         ...provided.draggableProps.style,
                       }}
                     ></div>
