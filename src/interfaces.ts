@@ -1,30 +1,19 @@
 export interface Colour {
-  id: string;
   hsl: string;
+  id: string;
 }
 
-export interface PegHolder {
-  colour: string | null;
+export interface ColourData {
+  redOrigin: Colour;
+  blueOrigin: Colour;
+}
+
+export interface PegInputType {
   id: string;
+  peg: Colour[];
 }
 
 export interface PegInputs {
-  one: PegInput;
-  two: PegInput;
-  three: PegInput;
-}
-
-interface PegInput {
-  colour: string | null;
-}
-
-export interface Colours {
-  pickRed: Colour;
-  pickGreen: Colour;
-  pickBlue: Colour;
-}
-
-export interface Colour {
-  id: string;
-  hsl: string;
+  one: PegInputType;
+  two: PegInputType;
 }
