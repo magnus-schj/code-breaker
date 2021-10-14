@@ -1,8 +1,14 @@
 import { FC, useState } from "react";
-import { DragDropContext, Droppable, DropResult } from "react-beautiful-dnd";
+import {
+  DragDropContext,
+  Draggable,
+  Droppable,
+  DropResult,
+} from "react-beautiful-dnd";
 import { colourData, pegInputsData } from "../initialData";
 import { ColourData, PegInputs, PegInputType } from "../interfaces";
 import ColourContainer from "./ColourContainer.component";
+import PegInput from "./PegInput.component";
 const Game: FC = () => {
   const [colours, setColours] = useState<ColourData>(colourData);
   const [pegInputs, setPegInputs] = useState<PegInputs>(pegInputsData);
@@ -17,6 +23,7 @@ const Game: FC = () => {
     const newColourDest: PegInputType = {
       ...pegInputs[destination.droppableId],
     };
+    newColourOrigin.id += newColourDest.id;
     newColourDest.peg.length = 0;
     newColourDest.peg.push(newColourOrigin);
     setInputs({ ...pegInputs, [newColourDest.id]: newColourDest });
@@ -25,31 +32,14 @@ const Game: FC = () => {
     <div className="game">
       <DragDropContext onDragEnd={(result) => onDragEnd(result, setPegInputs)}>
         <div className="peg-inputs">
-          {Object.entries(pegInputs).map(([id, data]) => (
-            <div
-              key={id}
-              style={{
-                padding: "3rem",
-                border: "1px solid black",
-              }}
-            >
-              <Droppable droppableId={id}>
-                {(provided, snapshot) => (
-                  <div ref={provided.innerRef}>
-                    {data.peg.map((peg) => (
-                      <h1>{peg.hsl}</h1>
-                    ))}
-                    {provided.placeholder}
-                  </div>
-                )}
-              </Droppable>
-            </div>
+          {Object.entries(pegInputs).map(([key, data]) => (
+            <PegInput key={key} data={data} />
           ))}
         </div>
         <div className="pickable-pegs">
-          {Object.entries(colours).map(([key, data]) => {
-            return <ColourContainer id={key} colour={data} key={key} />;
-          })}
+          {Object.entries(colours).map(([key, data]) => (
+            <ColourContainer id={key} colour={data} key={key} />
+          ))}
         </div>
       </DragDropContext>
     </div>

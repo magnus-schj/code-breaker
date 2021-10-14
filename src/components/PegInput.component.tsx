@@ -1,49 +1,44 @@
 import React, { FC } from "react";
-import { Draggable, Droppable } from "react-beautiful-dnd";
+import { PegInputType } from "../interfaces";
+import { Droppable } from "react-beautiful-dnd";
 
 interface Props {
-  id: string;
-  colour: string | null;
+  data: PegInputType;
 }
 
-const PegInput: FC<Props> = ({ id, colour }) => {
-  console.log("colour:", colour);
+const PegInput: FC<Props> = ({ data }) => {
   return (
-    <div className="peg-holder">
-      <Droppable droppableId={id}>
-        {(provided, snapshot) => {
-          return (
-            <div
-              ref={provided.innerRef}
-              style={{
-                height: "100%",
-                width: "100%",
-                background: colour ? colour : "grey",
-              }}
-            >
-              {colour && (
-                <Draggable key={id} draggableId={id} index={0}>
-                  {(provided, snapshot) => {
-                    return (
-                      <div
-                        ref={provided.innerRef}
-                        style={{
-                          background: colour ? colour : "grey",
-                          height: "100%",
-                          width: "100%",
-                          ...provided.draggableProps.style,
-                        }}
-                        {...provided.draggableProps}
-                        {...provided.dragHandleProps}
-                      ></div>
-                    );
-                  }}
-                </Draggable>
-              )}
-              {provided.placeholder}
-            </div>
-          );
-        }}
+    <div
+      style={{
+        height: "3rem",
+        width: "3rem",
+        border: "1px solid black",
+        overflow: "hidden",
+      }}
+    >
+      <Droppable droppableId={data.id}>
+        {(provided, snapshot) => (
+          <div
+            ref={provided.innerRef}
+            style={{
+              background: "grey",
+              height: "3rem",
+              width: "3rem",
+            }}
+          >
+            {data.peg.map(({ hsl, id }: any, i: number) => (
+              <div
+                style={{
+                  height: "3rem",
+                  width: "3rem",
+                  background: hsl,
+                }}
+                key={id}
+              ></div>
+            ))}
+            {provided.placeholder}
+          </div>
+        )}
       </Droppable>
     </div>
   );
