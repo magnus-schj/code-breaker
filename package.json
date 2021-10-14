@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "@material-ui/core": "^4.12.3",
+    "@material-ui/icons": "^4.11.2",
     "framer-motion": "^4.1.17",
     "react": "^17.0.0",
     "react-beautiful-dnd": "^13.1.0",
