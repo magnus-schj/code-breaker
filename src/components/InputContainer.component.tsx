@@ -7,7 +7,7 @@ interface Props {
   colour: Colour;
 }
 
-const ColourContainer: FC<Props> = ({ id, colour }) => {
+const InputContainer: FC<Props> = ({ id, colour }) => {
   return (
     <div
       key={id}
@@ -53,4 +53,4 @@ const ColourContainer: FC<Props> = ({ id, colour }) => {
   );
 };
 
-export default ColourContainer;
+export default InputContainer;

@@ -1,6 +1,7 @@
 import React, { FC } from "react";
 import { PegInputType } from "../interfaces";
 import { Droppable } from "react-beautiful-dnd";
+import PlacedPeg from "./PlacedPeg.component";
 
 interface Props {
   data: PegInputType;
@@ -8,33 +9,12 @@ interface Props {
 
 const PegInput: FC<Props> = ({ data }) => {
   return (
-    <div
-      style={{
-        height: "3rem",
-        width: "3rem",
-        border: "1px solid black",
-        overflow: "hidden",
-      }}
-    >
+    <div className="peg-input">
       <Droppable droppableId={data.id}>
         {(provided, snapshot) => (
-          <div
-            ref={provided.innerRef}
-            style={{
-              background: "grey",
-              height: "3rem",
-              width: "3rem",
-            }}
-          >
+          <div ref={provided.innerRef} className="peg-holder">
             {data.peg.map(({ hsl, id }: any, i: number) => (
-              <div
-                style={{
-                  height: "3rem",
-                  width: "3rem",
-                  background: hsl,
-                }}
-                key={id}
-              ></div>
+              <PlacedPeg key={id} hsl={hsl} />
             ))}
             {provided.placeholder}
           </div>

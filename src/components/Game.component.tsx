@@ -1,13 +1,8 @@
 import { FC, useState } from "react";
-import {
-  DragDropContext,
-  Draggable,
-  Droppable,
-  DropResult,
-} from "react-beautiful-dnd";
+import { DragDropContext, DropResult } from "react-beautiful-dnd";
 import { colourData, pegInputsData } from "../initialData";
 import { ColourData, PegInputs, PegInputType } from "../interfaces";
-import ColourContainer from "./ColourContainer.component";
+import InputContainer from "./InputContainer.component";
 import PegInput from "./PegInput.component";
 const Game: FC = () => {
   const [colours, setColours] = useState<ColourData>(colourData);
@@ -19,6 +14,8 @@ const Game: FC = () => {
   ) => {
     if (!result.destination) return;
     const { source, destination } = result;
+
+    // gets correct data from state, makes copies, updates state
     const newColourOrigin = { ...colours[source.droppableId] };
     const newColourDest: PegInputType = {
       ...pegInputs[destination.droppableId],
@@ -28,6 +25,7 @@ const Game: FC = () => {
     newColourDest.peg.push(newColourOrigin);
     setInputs({ ...pegInputs, [newColourDest.id]: newColourDest });
   };
+
   return (
     <div className="game">
       <DragDropContext onDragEnd={(result) => onDragEnd(result, setPegInputs)}>
@@ -38,7 +36,7 @@ const Game: FC = () => {
         </div>
         <div className="pickable-pegs">
           {Object.entries(colours).map(([key, data]) => (
-            <ColourContainer id={key} colour={data} key={key} />
+            <InputContainer id={key} colour={data} key={key} />
           ))}
         </div>
       </DragDropContext>

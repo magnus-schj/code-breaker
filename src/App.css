@@ -14,15 +14,15 @@
   border: 1px solid black;
 }
 
-.peg-holder {
+.peg-input {
   border: 1px solid black;
-  height: 3rem;
-  width: 3rem;
-  padding: 0;
   margin: 0.5rem;
 }
 
-.placed-peg {
+.peg-holder {
+  background: grey;
+  height: 3rem;
+  width: 3rem;
 }
 
 .pickable-pegs {
