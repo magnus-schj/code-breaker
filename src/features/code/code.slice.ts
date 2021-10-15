@@ -12,8 +12,10 @@ export const codeSlice = createSlice({
     makeCode(state, { payload }) {
       state.code = payload;
     },
-    win(state) {
+    breakCode(state) {
       state.codeBroken = true;
     },
   },
 });
+
+export const { makeCode, breakCode } = codeSlice.actions;

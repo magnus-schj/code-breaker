@@ -1,18 +1,26 @@
-import { FC, useState } from "react";
-import { useAppSelector } from "../App/hooks";
+import { FC, useEffect, useState } from "react";
+import { useAppSelector } from "../../App/hooks";
 
-import { Colour, ColourData, PegInputs, PegInputType } from "../interfaces";
+import { Colour, ColourData, PegInputs, PegInputType } from "../../interfaces";
 import { DragDropContext, DropResult } from "react-beautiful-dnd";
-import { colourData, pegInputsData } from "../initialData";
-import PegOrigin from "./PegOrigin.component";
-import PegInput from "./PegInput.component";
-import { addColour } from "../features/inputs/inputs.slice";
+import { colourData, pegInputsData } from "../../initialData";
+import PegOrigin from "../PegOrigin.component";
+import PegInput from "../PegInput.component";
+import { addColour } from "../../features/inputs/inputs.slice";
 import { useDispatch } from "react-redux";
+import { makeCode } from "../../features/code/code.slice";
+import { allInputsFilled, generateCode, useInputChecker } from "./utils";
 const Game: FC = () => {
   const dispatch = useDispatch();
 
   const [colours, setColours] = useState<{ [key: string]: Colour }>(colourData);
   const inputs = useAppSelector((state) => state.inputs);
+
+  useEffect(() => {
+    // make a code
+    const keys = Object.keys(inputs);
+    dispatch(makeCode(generateCode(keys, colours)));
+  }, []);
 
   const onDragEnd = (result: DropResult) => {
     if (!result.destination) return;
@@ -28,6 +36,7 @@ const Game: FC = () => {
     newColourDest.peg.push(newColourOrigin);
     dispatch(addColour(newColourDest));
   };
+  useInputChecker(inputs);
 
   return (
     <div className="game">
