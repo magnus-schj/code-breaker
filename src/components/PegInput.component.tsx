@@ -14,7 +14,7 @@ const PegInput: FC<Props> = ({ data }) => {
         {(provided, snapshot) => (
           <div ref={provided.innerRef} className="peg-holder">
             {data.peg.map(({ hsl, id }: any, i: number) => (
-              <PlacedPeg key={id} hsl={hsl} />
+              <PlacedPeg key={id} hsl={hsl} id={id} dropId={data.id} />
             ))}
             {provided.placeholder}
           </div>

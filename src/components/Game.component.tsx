@@ -4,7 +4,7 @@ import { useAppSelector } from "../App/hooks";
 import { Colour, ColourData, PegInputs, PegInputType } from "../interfaces";
 import { DragDropContext, DropResult } from "react-beautiful-dnd";
 import { colourData, pegInputsData } from "../initialData";
-import InputContainer from "./InputContainer.component";
+import PegOrigin from "./PegOrigin.component";
 import PegInput from "./PegInput.component";
 import { addColour } from "../features/inputs/inputs.slice";
 import { useDispatch } from "react-redux";
@@ -39,7 +39,7 @@ const Game: FC = () => {
         </div>
         <div className="pickable-pegs">
           {Object.entries(colours).map(([key, data]) => (
-            <InputContainer id={key} colour={data} key={key} />
+            <PegOrigin id={key} colour={data} key={key} />
           ))}
         </div>
       </DragDropContext>

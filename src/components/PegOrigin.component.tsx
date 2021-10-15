@@ -7,7 +7,7 @@ interface Props {
   colour: Colour;
 }
 
-const InputContainer: FC<Props> = ({ id, colour }) => {
+const PegOrigin: FC<Props> = ({ id, colour }) => {
   return (
     <div
       key={id}
@@ -53,4 +53,4 @@ const InputContainer: FC<Props> = ({ id, colour }) => {
   );
 };
 
-export default InputContainer;
+export default PegOrigin;

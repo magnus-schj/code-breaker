@@ -9,9 +9,14 @@ export const colourData: { [key: string]: Colour } = {
     hsl: "hsl(226, 65%, 35%)",
     id: "blueOrigin",
   },
+  greenOrigin: {
+    hsl: "hsl(149, 39%, 49%)",
+    id: "greenOrigin",
+  },
 };
 
 export const pegInputsData: { [key: string]: PegInputType } = {
   one: { id: "one", peg: [] },
   two: { id: "two", peg: [] },
+  three: { id: "three", peg: [] },
 };

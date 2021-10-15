@@ -6,11 +6,12 @@ export const inputsSlice = createSlice({
   initialState: pegInputsData,
   reducers: {
     addColour(state, { payload }) {
-      console.log("payload:", payload);
-      // state = { ...state, [payload.id]: { payload } };
       state[payload.id] = payload;
+    },
+    removeColour(state, { payload }) {
+      state[payload].peg = [];
     },
   },
 });
 
-export const { addColour } = inputsSlice.actions;
+export const { addColour, removeColour } = inputsSlice.actions;
