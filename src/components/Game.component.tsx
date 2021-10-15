@@ -1,36 +1,39 @@
 import { FC, useState } from "react";
+import { useAppSelector } from "../App/hooks";
+
+import { Colour, ColourData, PegInputs, PegInputType } from "../interfaces";
 import { DragDropContext, DropResult } from "react-beautiful-dnd";
 import { colourData, pegInputsData } from "../initialData";
-import { ColourData, PegInputs, PegInputType } from "../interfaces";
 import InputContainer from "./InputContainer.component";
 import PegInput from "./PegInput.component";
+import { addColour } from "../features/inputs/inputs.slice";
+import { useDispatch } from "react-redux";
 const Game: FC = () => {
-  const [colours, setColours] = useState<ColourData>(colourData);
-  const [pegInputs, setPegInputs] = useState<PegInputs>(pegInputsData);
+  const dispatch = useDispatch();
 
-  const onDragEnd = (
-    result: DropResult,
-    setInputs: React.Dispatch<React.SetStateAction<PegInputs>>
-  ) => {
+  const [colours, setColours] = useState<{ [key: string]: Colour }>(colourData);
+  const inputs = useAppSelector((state) => state.inputs);
+
+  const onDragEnd = (result: DropResult) => {
     if (!result.destination) return;
     const { source, destination } = result;
 
     // gets correct data from state, makes copies, updates state
     const newColourOrigin = { ...colours[source.droppableId] };
     const newColourDest: PegInputType = {
-      ...pegInputs[destination.droppableId],
+      ...inputs[destination.droppableId],
     };
     newColourOrigin.id += newColourDest.id;
-    newColourDest.peg.length = 0;
+    newColourDest.peg = [];
     newColourDest.peg.push(newColourOrigin);
-    setInputs({ ...pegInputs, [newColourDest.id]: newColourDest });
+    dispatch(addColour(newColourDest));
   };
 
   return (
     <div className="game">
-      <DragDropContext onDragEnd={(result) => onDragEnd(result, setPegInputs)}>
+      <DragDropContext onDragEnd={(result) => onDragEnd(result)}>
         <div className="peg-inputs">
-          {Object.entries(pegInputs).map(([key, data]) => (
+          {Object.entries(inputs).map(([key, data]) => (
             <PegInput key={key} data={data} />
           ))}
         </div>

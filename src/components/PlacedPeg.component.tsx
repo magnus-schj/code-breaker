@@ -10,6 +10,7 @@ interface Props {
 const PlacedPeg: FC<Props> = ({ hsl }) => {
   // delete icon focused or not
   const [hover, setHover] = useState(false);
+
   return (
     <div
       onMouseEnter={() => setHover(true)}
