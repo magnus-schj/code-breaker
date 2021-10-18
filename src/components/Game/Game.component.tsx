@@ -10,10 +10,12 @@ import { addColour } from "../../features/inputs/inputs.slice";
 import { useDispatch } from "react-redux";
 import { makeCode } from "../../features/code/code.slice";
 import { allInputsFilled, generateCode, useInputChecker } from "./utils";
+
 const Game: FC = () => {
   const dispatch = useDispatch();
 
   const [colours, setColours] = useState<{ [key: string]: Colour }>(colourData);
+  const [allInputsFilled, setAllInputsFilled] = useState(false);
   const inputs = useAppSelector((state) => state.inputs);
 
   useEffect(() => {
@@ -22,6 +24,7 @@ const Game: FC = () => {
     dispatch(makeCode(generateCode(keys, colours)));
   }, []);
 
+  // onDragEnd
   const onDragEnd = (result: DropResult) => {
     if (!result.destination) return;
     const { source, destination } = result;
@@ -36,8 +39,8 @@ const Game: FC = () => {
     newColourDest.peg.push(newColourOrigin);
     dispatch(addColour(newColourDest));
   };
-  useInputChecker(inputs);
-
+  useInputChecker(inputs, setAllInputsFilled);
+  console.log("allInputsFilled:", allInputsFilled);
   return (
     <div className="game">
       <DragDropContext onDragEnd={(result) => onDragEnd(result)}>
@@ -45,6 +48,7 @@ const Game: FC = () => {
           {Object.entries(inputs).map(([key, data]) => (
             <PegInput key={key} data={data} />
           ))}
+          {allInputsFilled && <button>Suksess!</button>}
         </div>
         <div className="pickable-pegs">
           {Object.entries(colours).map(([key, data]) => (

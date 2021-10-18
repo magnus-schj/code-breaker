@@ -14,10 +14,14 @@ export const generateCode = (
   return code;
 };
 // -----------------------------------------------------------
-export const useInputChecker = (inputs: { [key: string]: PegInputType }) => {
+export const useInputChecker = (
+  inputs: { [key: string]: PegInputType },
+  setAllInputsFilled: React.Dispatch<React.SetStateAction<boolean>>
+) => {
   useEffect(() => {
     // checks if all inputs are filled
-    console.log("allInputsFilled:", allInputsFilled(inputs));
+    if (allInputsFilled(inputs)) setAllInputsFilled(true);
+    else setAllInputsFilled(false);
   }, [inputs]);
 };
 export const allInputsFilled = (inputs: { [key: string]: PegInputType }) => {
