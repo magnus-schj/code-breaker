@@ -32,7 +32,6 @@ export const checkIfCodeBroken = (
   code: ColoursType | null
 ) => {
   if (!code) return;
-  console.log("code:", code);
 
   for (const [key, { id, peg }] of Object.entries(inputs)) {
     const [_peg] = peg;

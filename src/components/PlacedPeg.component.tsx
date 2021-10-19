@@ -9,9 +9,10 @@ import { removeColour } from "../features/inputs/inputs.slice";
 interface Props {
   hsl: string;
   dropId: string;
+  id: string;
 }
 
-const PlacedPeg: FC<Props> = ({ hsl, dropId }) => {
+const PlacedPeg: FC<Props> = ({ hsl, dropId, id }) => {
   const dispatch = useDispatch();
   // delete icon focused or not
   const [hover, setHover] = useState(false);
@@ -29,7 +30,7 @@ const PlacedPeg: FC<Props> = ({ hsl, dropId }) => {
           width: "3rem",
           background: hsl,
         }}
-        onClick={() => dispatch(removeColour(dropId))}
+        onClick={() => dispatch(removeColour(id))}
       >
         <Delete style={{ display: hover ? "block" : "none" }} />
       </ButtonBase>

@@ -70,6 +70,7 @@ const Game: FC = () => {
           ))}
         </div>
       </DragDropContext>
+      {code.codeBroken && <h1>Gratulerer! du vant!</h1>}
     </div>
   );
 };
