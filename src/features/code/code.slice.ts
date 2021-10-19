@@ -1,4 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { ColoursType } from "../../interfaces";
+
+interface Code {
+  code: null | ColoursType;
+  codeBroken: boolean;
+}
 
 const initialState = {
   code: null,
@@ -12,10 +18,10 @@ export const codeSlice = createSlice({
     makeCode(state, { payload }) {
       state.code = payload;
     },
-    breakCode(state) {
-      state.codeBroken = true;
+    setCodeBroken(state, { payload }) {
+      state.codeBroken = payload;
     },
   },
 });
 
-export const { makeCode, breakCode } = codeSlice.actions;
+export const { makeCode, setCodeBroken } = codeSlice.actions;

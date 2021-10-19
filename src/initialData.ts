@@ -1,6 +1,6 @@
-import { Colour, ColourData, PegInputs, PegInputType } from "./interfaces";
+import { ColoursType, PegInputsType } from "./interfaces";
 
-export const colourData: { [key: string]: Colour } = {
+export const colourData: ColoursType = {
   redOrigin: {
     hsl: "hsl(356, 100%, 41%)",
     id: "redOrigin",
@@ -15,7 +15,7 @@ export const colourData: { [key: string]: Colour } = {
   },
 };
 
-export const pegInputsData: { [key: string]: PegInputType } = {
+export const pegInputsData: PegInputsType = {
   one: { id: "one", peg: [] },
   two: { id: "two", peg: [] },
   three: { id: "three", peg: [] },

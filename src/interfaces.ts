@@ -3,9 +3,8 @@ export interface Colour {
   id: string;
 }
 
-export interface ColourData {
-  redOrigin: Colour;
-  blueOrigin: Colour;
+export interface ColoursType {
+  [key: string]: Colour;
 }
 
 export interface PegInputType {
@@ -13,7 +12,10 @@ export interface PegInputType {
   peg: Colour[];
 }
 
-export interface PegInputs {
-  one: PegInputType;
-  two: PegInputType;
+export interface PegInputsType {
+  [key: string]: PegInputType;
+}
+
+export interface NewColourOrigin extends Colour {
+  dropId?: string;
 }
