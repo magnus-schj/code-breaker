@@ -37,6 +37,5 @@ export const checkIfCodeBroken = (
     const [_peg] = peg;
     if (_peg.hsl !== code[key].hsl) return false;
   }
-  console.log("true!");
   return true;
 };

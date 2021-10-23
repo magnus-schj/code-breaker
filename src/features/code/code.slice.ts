@@ -4,11 +4,13 @@ import { ColoursType } from "../../interfaces";
 interface Code {
   code: null | ColoursType;
   codeBroken: boolean;
+  numTries: number;
 }
 
 const initialState = {
   code: null,
   codeBroken: false,
+  numTries: 0,
 };
 
 export const codeSlice = createSlice({
@@ -21,7 +23,10 @@ export const codeSlice = createSlice({
     setCodeBroken(state, { payload }) {
       state.codeBroken = payload;
     },
+    incrementTries(state) {
+      state.numTries++;
+    },
   },
 });
 
-export const { makeCode, setCodeBroken } = codeSlice.actions;
+export const { makeCode, setCodeBroken, incrementTries } = codeSlice.actions;

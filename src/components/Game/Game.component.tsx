@@ -13,7 +13,11 @@ import PegOrigin from "../PegOrigin.component";
 import PegInput from "../PegInput.component";
 import { addColour } from "../../features/inputs/inputs.slice";
 import { useDispatch } from "react-redux";
-import { makeCode, setCodeBroken } from "../../features/code/code.slice";
+import {
+  incrementTries,
+  makeCode,
+  setCodeBroken,
+} from "../../features/code/code.slice";
 import { generateCode, checkIfCodeBroken, useInputChecker } from "./utils";
 
 const Game: FC = () => {
@@ -21,6 +25,8 @@ const Game: FC = () => {
 
   const [colours, setColours] = useState<ColoursType>(colourData);
   const [allInputsFilled, setAllInputsFilled] = useState(false);
+  const [displayWrongCodeMessage, setDisplayWrongCodeMessage] = useState(false);
+
   const inputs = useAppSelector((state) => state.inputs);
   const code = useAppSelector((state) => state.code);
 
@@ -49,7 +55,13 @@ const Game: FC = () => {
   };
 
   const handleClick = (inputs: PegInputsType, code: ColoursType | null) => {
-    dispatch(setCodeBroken(checkIfCodeBroken(inputs, code)));
+    setDisplayWrongCodeMessage(false);
+    dispatch(incrementTries());
+    const isCodeBroken = checkIfCodeBroken(inputs, code);
+
+    isCodeBroken
+      ? dispatch(setCodeBroken(isCodeBroken))
+      : setDisplayWrongCodeMessage(true);
   };
   return (
     <div className="game">
@@ -70,7 +82,14 @@ const Game: FC = () => {
           ))}
         </div>
       </DragDropContext>
-      {code.codeBroken && <h1>Gratulerer! du vant!</h1>}
+      {code.codeBroken && (
+        <>
+          <></>
+          <h1>Gratulerer! du vant!</h1>
+          <h2>Du klarte det på {code.numTries} forsøk</h2>
+        </>
+      )}
+      {displayWrongCodeMessage && <h1>Feil! Prøv igjen!</h1>}
     </div>
   );
 };
