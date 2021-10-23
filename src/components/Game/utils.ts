@@ -1,7 +1,4 @@
-import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
 import { useEffect } from "react";
-import { useAppDispatch, useAppSelector } from "../../App/hooks";
-import { setCodeBroken } from "../../features/code/code.slice";
 import {
   Attempt,
   CodeSlice,
@@ -64,8 +61,12 @@ export const handleWrongCode = (
   setDisplay(true);
 
   let attempt: Attempt = { black: 0, white: 0 };
+  // count black pegs
+  console.log("code:", code);
+  console.log("inputs:", inputs);
   Object.entries(code).forEach(([key, { id }]) => {
     id === inputs[key].peg[0].id && attempt.black++;
   });
+
   addAttempt(attempt);
 };

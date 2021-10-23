@@ -12,7 +12,6 @@ import { colourData } from "../../initialData";
 import PegOrigin from "../PegOrigin.component";
 import PegInput from "../PegInput.component";
 import { addColour } from "../../features/inputs/inputs.slice";
-import { useDispatch } from "react-redux";
 import {
   addAttempt,
   incrementTries,
@@ -27,7 +26,7 @@ import {
 } from "./utils";
 
 const Game: FC = () => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const [colours, setColours] = useState<ColoursType>(colourData);
   const [allInputsFilled, setAllInputsFilled] = useState(false);
@@ -92,7 +91,6 @@ const Game: FC = () => {
       </DragDropContext>
       {codeSlice.codeBroken && (
         <>
-          <></>
           <h1>Gratulerer! du vant!</h1>
           <h2>Du klarte det på {codeSlice.numTries} forsøk</h2>
         </>
