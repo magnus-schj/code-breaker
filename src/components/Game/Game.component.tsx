@@ -1,5 +1,5 @@
 import { FC, useEffect, useState } from "react";
-import { useAppSelector } from "../../App/hooks";
+import { useAppDispatch, useAppSelector } from "../../App/hooks";
 
 import {
   ColoursType,
@@ -14,11 +14,17 @@ import PegInput from "../PegInput.component";
 import { addColour } from "../../features/inputs/inputs.slice";
 import { useDispatch } from "react-redux";
 import {
+  addAttempt,
   incrementTries,
   makeCode,
   setCodeBroken,
 } from "../../features/code/code.slice";
-import { generateCode, checkIfCodeBroken, useInputChecker } from "./utils";
+import {
+  generateCode,
+  checkIfCodeBroken,
+  useInputChecker,
+  handleWrongCode,
+} from "./utils";
 
 const Game: FC = () => {
   const dispatch = useDispatch();
@@ -28,7 +34,7 @@ const Game: FC = () => {
   const [displayWrongCodeMessage, setDisplayWrongCodeMessage] = useState(false);
 
   const inputs = useAppSelector((state) => state.inputs);
-  const code = useAppSelector((state) => state.code);
+  const codeSlice = useAppSelector((state) => state.code);
 
   useEffect(() => {
     // make a code
@@ -61,7 +67,9 @@ const Game: FC = () => {
 
     isCodeBroken
       ? dispatch(setCodeBroken(isCodeBroken))
-      : setDisplayWrongCodeMessage(true);
+      : handleWrongCode(setDisplayWrongCodeMessage, codeSlice, inputs, (obj) =>
+          dispatch(addAttempt(obj))
+        );
   };
   return (
     <div className="game">
@@ -71,7 +79,7 @@ const Game: FC = () => {
             <PegInput key={key} data={data} />
           ))}
           {allInputsFilled && (
-            <button onClick={() => handleClick(inputs, code.code)}>
+            <button onClick={() => handleClick(inputs, codeSlice.code)}>
               Check
             </button>
           )}
@@ -82,11 +90,11 @@ const Game: FC = () => {
           ))}
         </div>
       </DragDropContext>
-      {code.codeBroken && (
+      {codeSlice.codeBroken && (
         <>
           <></>
           <h1>Gratulerer! du vant!</h1>
-          <h2>Du klarte det på {code.numTries} forsøk</h2>
+          <h2>Du klarte det på {codeSlice.numTries} forsøk</h2>
         </>
       )}
       {displayWrongCodeMessage && <h1>Feil! Prøv igjen!</h1>}

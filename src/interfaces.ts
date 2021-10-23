@@ -19,3 +19,17 @@ export interface PegInputsType {
 export interface NewColourOrigin extends Colour {
   dropId?: string;
 }
+
+// ------------------------------------------------
+
+export interface Attempt {
+  black: number;
+  white: number;
+}
+
+export interface CodeSlice {
+  code: null | ColoursType;
+  codeBroken: boolean;
+  numTries: number;
+  attempts: Attempt[];
+}

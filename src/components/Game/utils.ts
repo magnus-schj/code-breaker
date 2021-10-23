@@ -1,5 +1,13 @@
+import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
 import { useEffect } from "react";
-import { ColoursType, PegInputsType } from "../../interfaces";
+import { useAppDispatch, useAppSelector } from "../../App/hooks";
+import { setCodeBroken } from "../../features/code/code.slice";
+import {
+  Attempt,
+  CodeSlice,
+  ColoursType,
+  PegInputsType,
+} from "../../interfaces";
 
 export const generateCode = (keys: string[], colours: ColoursType) => {
   const code: ColoursType = {};
@@ -21,12 +29,14 @@ export const useInputChecker = (
     else setAllInputsFilled(false);
   }, [inputs]);
 };
+
 export const checkAllInputsFilled = (inputs: PegInputsType) => {
   for (const [, input] of Object.entries(inputs)) {
     if (input.peg.length === 0) return false;
   }
   return true;
 };
+// -----------------------------------------------------------
 export const checkIfCodeBroken = (
   inputs: PegInputsType,
   code: ColoursType | null
@@ -38,4 +48,24 @@ export const checkIfCodeBroken = (
     if (_peg.hsl !== code[key].hsl) return false;
   }
   return true;
+};
+
+// -----------------------------------------------------------
+
+export const handleWrongCode = (
+  setDisplay: React.Dispatch<React.SetStateAction<boolean>>,
+  codeSlice: CodeSlice,
+  inputs: PegInputsType,
+  addAttempt: (attempt: Attempt) => void
+) => {
+  if (!codeSlice.code) return;
+
+  const { code } = codeSlice;
+  setDisplay(true);
+
+  let attempt: Attempt = { black: 0, white: 0 };
+  Object.entries(code).forEach(([key, { id }]) => {
+    id === inputs[key].peg[0].id && attempt.black++;
+  });
+  addAttempt(attempt);
 };

@@ -1,16 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { ColoursType } from "../../interfaces";
+import { Attempt, CodeSlice, ColoursType } from "../../interfaces";
 
-interface Code {
-  code: null | ColoursType;
-  codeBroken: boolean;
-  numTries: number;
-}
-
-const initialState = {
+const initialState: CodeSlice = {
   code: null,
   codeBroken: false,
   numTries: 0,
+  attempts: [],
 };
 
 export const codeSlice = createSlice({
@@ -26,7 +21,11 @@ export const codeSlice = createSlice({
     incrementTries(state) {
       state.numTries++;
     },
+    addAttempt(state, { payload }) {
+      state.attempts.push(payload);
+    },
   },
 });
 
-export const { makeCode, setCodeBroken, incrementTries } = codeSlice.actions;
+export const { makeCode, setCodeBroken, incrementTries, addAttempt } =
+  codeSlice.actions;
