@@ -24,6 +24,7 @@ import {
   useInputChecker,
   handleWrongCode,
 } from "./utils";
+import Attempts from "../Attempts.component";
 
 const Game: FC = () => {
   const dispatch = useAppDispatch();
@@ -73,16 +74,20 @@ const Game: FC = () => {
   return (
     <div className="game">
       <DragDropContext onDragEnd={(result) => onDragEnd(result)}>
-        <div className="peg-inputs">
-          {Object.entries(inputs).map(([key, data]) => (
-            <PegInput key={key} data={data} />
-          ))}
-          {allInputsFilled && (
-            <button onClick={() => handleClick(inputs, codeSlice.code)}>
-              Check
-            </button>
-          )}
+        <div className="inputs-and-attempts">
+          <div className="peg-inputs">
+            {Object.entries(inputs).map(([key, data]) => (
+              <PegInput key={key} data={data} />
+            ))}
+            {allInputsFilled && (
+              <button onClick={() => handleClick(inputs, codeSlice.code)}>
+                Check
+              </button>
+            )}
+          </div>
+          <Attempts />
         </div>
+
         <div className="pickable-pegs">
           {Object.entries(colours).map(([key, data]) => (
             <PegOrigin id={key} colour={data} key={key} />
