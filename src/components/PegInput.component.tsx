@@ -1,49 +1,24 @@
 import React, { FC } from "react";
-import { Draggable, Droppable } from "react-beautiful-dnd";
+import { PegInputType } from "../interfaces";
+import { Droppable } from "react-beautiful-dnd";
+import PlacedPeg from "./PlacedPeg.component";
 
 interface Props {
-  id: string;
-  colour: string | null;
+  data: PegInputType;
 }
 
-const PegInput: FC<Props> = ({ id, colour }) => {
-  console.log("colour:", colour);
+const PegInput: FC<Props> = ({ data }) => {
   return (
-    <div className="peg-holder">
-      <Droppable droppableId={id}>
-        {(provided, snapshot) => {
-          return (
-            <div
-              ref={provided.innerRef}
-              style={{
-                height: "100%",
-                width: "100%",
-                background: colour ? colour : "grey",
-              }}
-            >
-              {colour && (
-                <Draggable key={id} draggableId={id} index={0}>
-                  {(provided, snapshot) => {
-                    return (
-                      <div
-                        ref={provided.innerRef}
-                        style={{
-                          background: colour ? colour : "grey",
-                          height: "100%",
-                          width: "100%",
-                          ...provided.draggableProps.style,
-                        }}
-                        {...provided.draggableProps}
-                        {...provided.dragHandleProps}
-                      ></div>
-                    );
-                  }}
-                </Draggable>
-              )}
-              {provided.placeholder}
-            </div>
-          );
-        }}
+    <div className="peg-input">
+      <Droppable droppableId={data.id}>
+        {(provided, snapshot) => (
+          <div ref={provided.innerRef} className="peg-holder">
+            {data.peg.map(({ hsl, id, dropId }: any, i: number) => (
+              <PlacedPeg key={id} hsl={hsl} id={data.id} dropId={dropId} />
+            ))}
+            {provided.placeholder}
+          </div>
+        )}
       </Droppable>
     </div>
   );

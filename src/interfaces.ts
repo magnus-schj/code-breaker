@@ -1,30 +1,36 @@
 export interface Colour {
-  id: string;
   hsl: string;
-}
-
-export interface PegHolder {
-  colour: string | null;
   id: string;
 }
 
-export interface PegInputs {
-  one: PegInput;
-  two: PegInput;
-  three: PegInput;
+export interface ColoursType {
+  [key: string]: Colour;
 }
 
-interface PegInput {
-  colour: string | null;
-}
-
-export interface Colours {
-  pickRed: Colour;
-  pickGreen: Colour;
-  pickBlue: Colour;
-}
-
-export interface Colour {
+export interface PegInputType {
   id: string;
-  hsl: string;
+  peg: Colour[];
+}
+
+export interface PegInputsType {
+  [key: string]: PegInputType;
+}
+
+export interface NewColourOrigin extends Colour {
+  dropId?: string;
+}
+
+// ------------------------------------------------
+
+export interface Attempt {
+  black: number;
+  white: number;
+  colours?: string[];
+}
+
+export interface CodeSlice {
+  code: null | ColoursType;
+  codeBroken: boolean;
+  numTries: number;
+  attempts: Attempt[];
 }
