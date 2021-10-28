@@ -35,3 +35,9 @@
   display: flex;
   width: 100%;
 }
+/* ----------------------------------- */
+.attempt-pegs {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
