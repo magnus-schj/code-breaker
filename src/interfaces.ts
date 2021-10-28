@@ -25,6 +25,7 @@ export interface NewColourOrigin extends Colour {
 export interface Attempt {
   black: number;
   white: number;
+  colours?: string[];
 }
 
 export interface CodeSlice {

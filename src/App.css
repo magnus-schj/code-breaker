@@ -8,17 +8,6 @@
   justify-content: center;
 }
 
-.peg-inputs {
-  display: flex;
-  padding: 1rem;
-  border: 1px solid black;
-}
-
-.peg-input {
-  border: 1px solid black;
-  margin: 0.5rem;
-}
-
 .peg-holder {
   background: grey;
   height: 3rem;
@@ -30,14 +19,37 @@
   border: 1px solid black;
   padding: 1rem;
 }
-
+/* ----------------------------------- */
 .inputs-and-attempts {
   display: flex;
+  justify-content: space-between;
   width: 100%;
 }
-/* ----------------------------------- */
+
 .attempt-pegs {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.peg-inputs {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  border: 1px solid black;
+  height: 100px;
+}
+
+.peg-input {
+  border: 1px solid black;
+  margin: 0.5rem;
+  height: 48px;
+}
+
+.attempt {
+  border: 1px solid black;
+}
+
+.history {
+  display: flex;
 }

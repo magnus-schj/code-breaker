@@ -76,10 +76,12 @@ export const handleWrongCode = (
   const codeEntries = Object.entries(code);
   const inputEntries = Object.entries(inputs);
 
-  console.log("code:", code);
-  console.log("inputs:", inputs);
+  const attempt: Attempt = {
+    black: 0,
+    white: 0,
+    colours: inputEntries.map(([key, value]) => value.peg[0].hsl),
+  };
 
-  const attempt: Attempt = { black: 0, white: 0 };
   const whiteMatches = [];
   codeEntries.forEach(([key, { id }]) => {
     // check if current property and key matches with the corresponding input property
@@ -97,7 +99,6 @@ export const handleWrongCode = (
 
     // if a there is a white match, add it to the list and increment the white property
     whiteMatch && whiteMatches.push(whiteMatch[1].peg[0].id) && attempt.white++;
-    console.log("match:", whiteMatch);
   });
 
   addAttempt(attempt);
