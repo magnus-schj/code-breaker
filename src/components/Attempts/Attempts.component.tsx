@@ -1,7 +1,7 @@
-import { colors } from "@material-ui/core";
+import { colors, Typography } from "@material-ui/core";
 import React, { FC } from "react";
-import { useAppSelector } from "../App/hooks";
-import { Attempt } from "../interfaces";
+import { useAppSelector } from "../../App/hooks";
+import { Attempt } from "../../interfaces";
 
 interface Props {}
 
@@ -14,8 +14,8 @@ const Attempts: FC<Props> = () => {
         <div
           key={i}
           style={{
-            height: "0.5rem",
-            width: "0.5rem",
+            height: "2rem",
+            width: "2rem",
             border: "1px solid black",
             background: isBlack ? "black" : "white",
           }}
@@ -26,22 +26,23 @@ const Attempts: FC<Props> = () => {
     return pegs;
   };
   return (
-    <div>
-      {code.attempts.map(({ black, white, colours }, i) => (
-        <div className="attempt">
-          <ul>Attempt number {i + 1}</ul>
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-            }}
-          >
+    <div className="attempts-container">
+      <Typography variant="h4" color="initial">
+        Attempts left: {code.limit - code.numTries}
+      </Typography>
+      <div className="attempts">
+        {code.attempts.map(({ black, white, colours }, i) => (
+          <div className="attempt" key={i}>
+            <Typography variant="h5" color="initial">
+              {i + 1}:
+            </Typography>
             <div className="history">
-              {colours?.map((colour) => (
+              {colours?.map((colour, j) => (
                 <div
+                  key={j}
                   style={{
-                    height: "0.5rem",
-                    width: "0.5rem",
+                    height: "2rem",
+                    width: "2rem",
                     border: "1px solid black",
                     background: colour,
                   }}
@@ -53,8 +54,8 @@ const Attempts: FC<Props> = () => {
               {renderPegs(white, false)}
             </div>
           </div>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   );
 };

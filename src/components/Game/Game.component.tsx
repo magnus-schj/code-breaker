@@ -5,8 +5,10 @@ import "./game.styles.css";
 import { colourData } from "../../initialData";
 import { makeCode } from "../../features/code/code.slice";
 import { generateCode } from "./utils";
-import { Button } from "@material-ui/core";
+import { Button, IconButton } from "@material-ui/core";
+import HelpIcon from "@material-ui/icons/Help";
 import DragDrop from "../DragDrop.component";
+import Attempts from "../Attempts/Attempts.component";
 
 const Game: FC = () => {
   const dispatch = useAppDispatch();
@@ -24,18 +26,19 @@ const Game: FC = () => {
 
   return (
     <div className="game">
+      {/* header */}
       <header id="game-header">
         <Button variant="contained">Quit</Button>
-        <Button variant="contained">Help</Button>
+
+        <IconButton color="primary" aria-label="help">
+          <HelpIcon />
+        </IconButton>
       </header>
+
+      <Attempts />
+
+      {/* dragdrop */}
       <DragDrop setDisplayWrongCodeMessage={setDisplayWrongCodeMessage} />
-      {codeSlice.codeBroken && (
-        <>
-          <h1>Gratulerer! du vant!</h1>
-          <h2>Du klarte det på {codeSlice.numTries} forsøk</h2>
-        </>
-      )}
-      {displayWrongCodeMessage && <h1>Feil! Prøv igjen!</h1>}
     </div>
   );
 };

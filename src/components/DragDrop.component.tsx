@@ -9,7 +9,7 @@ import {
 } from "../interfaces";
 import { colourData } from "../initialData";
 
-import Attempts from "./Attempts.component";
+import Attempts from "./Attempts/Attempts.component";
 import PegInput from "./PegInput.component";
 import PegOrigin from "./PegOrigin.component";
 
@@ -71,7 +71,7 @@ const DragDrop: FC<Props> = ({ setDisplayWrongCodeMessage }) => {
   };
   return (
     <DragDropContext onDragEnd={(result) => onDragEnd(result)}>
-      <div className="inputs-and-attempts">
+      <div className="drag-drop-wrapper">
         <div className="peg-inputs">
           {Object.entries(inputs).map(([key, data]) => (
             <PegInput key={key} data={data} />
@@ -82,13 +82,11 @@ const DragDrop: FC<Props> = ({ setDisplayWrongCodeMessage }) => {
             </button>
           )}
         </div>
-        <Attempts />
-      </div>
-
-      <div className="pickable-pegs">
-        {Object.entries(colours).map(([key, data]) => (
-          <PegOrigin id={key} colour={data} key={key} />
-        ))}
+        <div className="pickable-pegs">
+          {Object.entries(colours).map(([key, data]) => (
+            <PegOrigin id={key} colour={data} key={key} />
+          ))}
+        </div>
       </div>
     </DragDropContext>
   );

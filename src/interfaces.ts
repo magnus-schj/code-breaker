@@ -33,4 +33,5 @@ export interface CodeSlice {
   codeBroken: boolean;
   numTries: number;
   attempts: Attempt[];
+  limit: number;
 }

@@ -1,11 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { Attempt, CodeSlice, ColoursType } from "../../interfaces";
+import { CodeSlice } from "../../interfaces";
 
 const initialState: CodeSlice = {
   code: null,
   codeBroken: false,
   numTries: 0,
   attempts: [],
+  limit: 16,
 };
 
 export const codeSlice = createSlice({
