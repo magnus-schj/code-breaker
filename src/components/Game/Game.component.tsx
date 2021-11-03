@@ -5,7 +5,13 @@ import "./game.styles.css";
 import { colourData } from "../../initialData";
 import { makeCode } from "../../features/code/code.slice";
 import { generateCode } from "./utils";
-import { Button, IconButton } from "@material-ui/core";
+import {
+  Button,
+  IconButton,
+  AppBar,
+  Toolbar,
+  Typography,
+} from "@material-ui/core";
 import HelpIcon from "@material-ui/icons/Help";
 import DragDrop from "../DragDrop.component";
 import Attempts from "../Attempts/Attempts.component";
@@ -26,14 +32,16 @@ const Game: FC = () => {
 
   return (
     <div className="game">
-      {/* header */}
-      <header id="game-header">
-        <Button variant="contained">Quit</Button>
-
-        <IconButton color="primary" aria-label="help">
-          <HelpIcon />
-        </IconButton>
-      </header>
+      <AppBar position="fixed" color="primary">
+        <Toolbar>
+          <span style={{ flexGrow: 1 }}>
+            <Button variant="contained">Quit</Button>
+          </span>
+          <IconButton color="default" aria-label="help">
+            <HelpIcon />
+          </IconButton>
+        </Toolbar>
+      </AppBar>
 
       <Attempts />
 

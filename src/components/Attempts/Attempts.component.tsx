@@ -14,6 +14,8 @@ const Attempts: FC<Props> = () => {
         <div
           key={i}
           style={{
+            margin: "0.1rem",
+
             height: "2rem",
             width: "2rem",
             border: "1px solid black",
@@ -41,6 +43,7 @@ const Attempts: FC<Props> = () => {
                 <div
                   key={j}
                   style={{
+                    margin: "0.1rem",
                     height: "2rem",
                     width: "2rem",
                     border: "1px solid black",
