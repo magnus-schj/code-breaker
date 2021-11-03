@@ -1,11 +1,26 @@
-import { colors, Typography } from "@material-ui/core";
+import { colors, Typography, Paper } from "@material-ui/core";
 import React, { FC } from "react";
 import { useAppSelector } from "../../App/hooks";
 import { Attempt } from "../../interfaces";
+import { makeStyles } from "@material-ui/core/styles";
+
+const useStyles = makeStyles({
+  root: {
+    height: "50%",
+    width: "80%",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    padding: "0.5rem",
+    margin: "0.5rem",
+  },
+});
 
 interface Props {}
 
 const Attempts: FC<Props> = () => {
+  const classes = useStyles();
+
   const code = useAppSelector((state) => state.code);
   const renderPegs = (num: number, isBlack: boolean) => {
     const pegs = [];
@@ -15,7 +30,6 @@ const Attempts: FC<Props> = () => {
           key={i}
           style={{
             margin: "0.1rem",
-
             height: "2rem",
             width: "2rem",
             border: "1px solid black",
@@ -28,7 +42,7 @@ const Attempts: FC<Props> = () => {
     return pegs;
   };
   return (
-    <div className="attempts-container">
+    <Paper elevation={3} className={classes.root}>
       <Typography variant="h4" color="initial">
         Attempts left: {code.limit - code.numTries}
       </Typography>
@@ -59,7 +73,7 @@ const Attempts: FC<Props> = () => {
           </div>
         ))}
       </div>
-    </div>
+    </Paper>
   );
 };
 

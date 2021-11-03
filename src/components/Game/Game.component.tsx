@@ -13,7 +13,7 @@ import {
   Typography,
 } from "@material-ui/core";
 import HelpIcon from "@material-ui/icons/Help";
-import DragDrop from "../DragDrop.component";
+import DragDrop from "../DragDrop/DragDrop.component";
 import Attempts from "../Attempts/Attempts.component";
 
 const Game: FC = () => {

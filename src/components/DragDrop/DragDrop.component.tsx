@@ -1,37 +1,39 @@
 import React, { Dispatch, FC, SetStateAction, useState } from "react";
-import { useAppDispatch, useAppSelector } from "../App/hooks";
+import { useAppDispatch, useAppSelector } from "../../App/hooks";
 
 import {
   ColoursType,
   NewColourOrigin,
   PegInputsType,
   PegInputType,
-} from "../interfaces";
-import { colourData } from "../initialData";
+} from "../../interfaces";
+import { colourData } from "../../initialData";
 
-import Attempts from "./Attempts/Attempts.component";
-import PegInput from "./PegInput.component";
-import PegOrigin from "./PegOrigin.component";
+import Attempts from "../Attempts/Attempts.component";
+import PegInput from "../PegInput.component";
+import PegOrigin from "../PegOrigin.component";
 
 import { DragDropContext, DropResult } from "react-beautiful-dnd";
-import { addColour } from "../features/inputs/inputs.slice";
+import { addColour } from "../../features/inputs/inputs.slice";
 import {
   checkIfCodeBroken,
   handleWrongCode,
   useInputChecker,
-} from "./Game/utils";
+} from "../Game/utils";
 import {
   incrementTries,
   setCodeBroken,
-  codeSlice,
   addAttempt,
-} from "../features/code/code.slice";
+} from "../../features/code/code.slice";
+import { Paper } from "@material-ui/core";
+import { useStyles } from "./utils";
 
 interface Props {
   setDisplayWrongCodeMessage: Dispatch<SetStateAction<boolean>>;
 }
 
 const DragDrop: FC<Props> = ({ setDisplayWrongCodeMessage }) => {
+  const classes = useStyles();
   const dispatch = useAppDispatch();
 
   const [colours, setColours] = useState<ColoursType>(colourData);
@@ -72,7 +74,7 @@ const DragDrop: FC<Props> = ({ setDisplayWrongCodeMessage }) => {
   return (
     <DragDropContext onDragEnd={(result) => onDragEnd(result)}>
       <div className="drag-drop-wrapper">
-        <div className="peg-inputs">
+        <Paper className={classes.inputs}>
           {Object.entries(inputs).map(([key, data]) => (
             <PegInput key={key} data={data} />
           ))}
@@ -81,12 +83,12 @@ const DragDrop: FC<Props> = ({ setDisplayWrongCodeMessage }) => {
               Check
             </button>
           )}
-        </div>
-        <div className="pickable-pegs">
+        </Paper>
+        <Paper className={classes.pickable}>
           {Object.entries(colours).map(([key, data]) => (
             <PegOrigin id={key} colour={data} key={key} />
           ))}
-        </div>
+        </Paper>
       </div>
     </DragDropContext>
   );
