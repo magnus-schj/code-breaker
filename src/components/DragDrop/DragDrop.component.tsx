@@ -9,7 +9,6 @@ import {
 } from "../../interfaces";
 import { colourData } from "../../initialData";
 
-import Attempts from "../Attempts/Attempts.component";
 import PegInput from "../PegInput.component";
 import PegOrigin from "../PegOrigin.component";
 
@@ -25,8 +24,8 @@ import {
   setCodeBroken,
   addAttempt,
 } from "../../features/code/code.slice";
-import { Paper } from "@material-ui/core";
 import { useStyles } from "./utils";
+import { Paper } from "@mui/material";
 
 interface Props {
   setDisplayWrongCodeMessage: Dispatch<SetStateAction<boolean>>;

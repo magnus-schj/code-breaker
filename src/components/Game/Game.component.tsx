@@ -5,16 +5,11 @@ import "./game.styles.css";
 import { colourData } from "../../initialData";
 import { makeCode } from "../../features/code/code.slice";
 import { generateCode } from "./utils";
-import {
-  Button,
-  IconButton,
-  AppBar,
-  Toolbar,
-  Typography,
-} from "@material-ui/core";
-import HelpIcon from "@material-ui/icons/Help";
+
 import DragDrop from "../DragDrop/DragDrop.component";
 import Attempts from "../Attempts/Attempts.component";
+import { AppBar, Button, IconButton, Toolbar } from "@mui/material";
+import HelpIcon from "@mui/icons-material/Help";
 
 const Game: FC = () => {
   const dispatch = useAppDispatch();

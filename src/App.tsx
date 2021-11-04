@@ -1,8 +1,7 @@
-import { Button, Typography } from "@material-ui/core";
+import { Button, makeStyles, Typography } from "@mui/material";
 import { useState } from "react";
 import "./App.css";
 import Game from "./components/Game/Game.component";
-import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles({
   button: {

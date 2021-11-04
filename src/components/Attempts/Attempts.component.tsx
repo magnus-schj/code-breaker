@@ -1,8 +1,7 @@
-import { colors, Typography, Paper } from "@material-ui/core";
+import { Paper, Typography } from "@mui/material";
 import React, { FC } from "react";
 import { useAppSelector } from "../../App/hooks";
 import { Attempt } from "../../interfaces";
-import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles({
   root: {

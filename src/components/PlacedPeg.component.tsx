@@ -1,9 +1,9 @@
+import { Delete } from "@mui/icons-material";
+import { ButtonBase } from "@mui/material";
 import React, { FC, useState } from "react";
 
 import { useDispatch } from "react-redux";
 
-import { ButtonBase } from "@material-ui/core";
-import { Delete } from "@material-ui/icons";
 import { removeColour } from "../features/inputs/inputs.slice";
 
 interface Props {
