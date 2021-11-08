@@ -1,6 +1,7 @@
 import { FC } from "react";
 import { useAppSelector } from "../../App/hooks";
-import { makeStyles, Paper, Typography } from "@mui/material";
+import { Paper, Typography } from "@mui/material";
+import { makeStyles } from "@mui/styles";
 
 const useStyles = makeStyles({
   root: {
@@ -10,7 +11,7 @@ const useStyles = makeStyles({
     flexDirection: "column",
     alignItems: "center",
     padding: "0.5rem",
-    margin: "0.5rem",
+    margin: "5rem auto",
   },
 });
 

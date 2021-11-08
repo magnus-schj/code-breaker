@@ -19,6 +19,7 @@ import { DragDropContext, DropResult } from "react-beautiful-dnd";
 import { Paper } from "@mui/material";
 import PegInput from "../PegInput.component";
 import PegOrigin from "../PegOrigin.component";
+import { useStyles } from "./utils";
 
 interface Props {
   setDisplayWrongCodeMessage: Dispatch<SetStateAction<boolean>>;
@@ -65,7 +66,7 @@ const DragDrop: FC<Props> = ({ setDisplayWrongCodeMessage }) => {
   };
   return (
     <DragDropContext onDragEnd={(result) => onDragEnd(result)}>
-      <div className="drag-drop-wrapper">
+      <div className={classes.wrapper}>
         <Paper className={classes.inputs}>
           {Object.entries(inputs).map(([key, data]) => (
             <PegInput key={key} data={data} />

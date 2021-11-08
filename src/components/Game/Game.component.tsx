@@ -4,9 +4,10 @@ import { makeCode } from "../../features/code/code.slice";
 import { colourData } from "../../initialData";
 
 import { AppBar, Toolbar, Button, IconButton } from "@mui/material";
-import { Help } from "@mui/icons-material/";
 import { generateCode } from "./utils";
 import Attempts from "../Attempts/Attempts.component";
+import DragDrop from "../DragDrop/DragDrop.component";
+import { Help } from "@mui/icons-material";
 
 const Game: FC = () => {
   const dispatch = useAppDispatch();
@@ -34,7 +35,6 @@ const Game: FC = () => {
           </IconButton>
         </Toolbar>
       </AppBar>
-
       <Attempts />
 
       {/* dragdrop */}
