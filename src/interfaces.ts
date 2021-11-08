@@ -8,6 +8,10 @@ export interface ColoursType {
   [key: string]: Colour;
 }
 
+export interface NewColourOrigin extends Colour {
+  dropId?: string;
+}
+
 // peg
 export interface Peg {
   id: string;
