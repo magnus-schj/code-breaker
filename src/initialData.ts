@@ -43,13 +43,25 @@ import { v4 } from "uuid";
 // };
 
 export const initialOutputs: InitialOutputs = {
+  purple: {
+    hsl: "hsl(280, 83%, 53%)",
+    name: "purple",
+  },
   pink: {
     hsl: "hsl(329, 83%, 53%)",
     name: "pink",
   },
-  pinker: {
+  red: {
     hsl: "hsl(354, 83%, 53%)",
-    name: "pink",
+    name: "red",
+  },
+  yellow: {
+    hsl: "hsl(400, 83%, 53%)",
+    name: "yellow",
+  },
+  green: {
+    hsl: "hsl(450, 83%, 53%)",
+    name: "green",
   },
 };
 

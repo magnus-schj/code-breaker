@@ -13,7 +13,7 @@ export const codeSlice = createSlice({
   name: "code",
   initialState: initialState,
   reducers: {
-    makeCode(state, { payload }) {
+    setCode(state, { payload }) {
       state.code = payload;
     },
     setCodeBroken(state, { payload }) {
@@ -28,5 +28,5 @@ export const codeSlice = createSlice({
   },
 });
 
-export const { makeCode, setCodeBroken, incrementTries, addAttempt } =
+export const { setCode, setCodeBroken, incrementTries, addAttempt } =
   codeSlice.actions;

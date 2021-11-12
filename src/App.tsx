@@ -3,6 +3,8 @@ import logo from "./logo.svg";
 import "./App.css";
 import { Typography, Button } from "@mui/material";
 import Game from "./components/Game/Game.component";
+import { initialOutputs, inputsData } from "./initialData";
+import { generateCode } from "./components/Game/utils";
 
 function App() {
   const [gameInitialized, setGameInitialized] = useState(false);

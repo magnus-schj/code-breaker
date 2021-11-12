@@ -6,10 +6,6 @@ export interface Colour {
   name: string;
 }
 
-export interface ColoursType {
-  [key: string]: Colour;
-}
-
 export interface InitialOutputs {
   [key: string]: Colour;
 }
@@ -44,7 +40,7 @@ export interface Attempt {
 }
 
 export interface CodeSlice {
-  code: null | ColoursType;
+  code: null | InitialOutputs;
   codeBroken: boolean;
   numTries: number;
   attempts: Attempt[];
