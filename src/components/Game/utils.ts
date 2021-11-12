@@ -1,17 +1,8 @@
-import { useEffect } from "react";
-import {
-  Attempt,
-  CodeSlice,
-  Colour,
-  InitialOutputs,
-  PegsType,
-} from "../../interfaces";
+import { Colour, InitialOutputs } from "../../interfaces";
 
 export const generateCode = (keys: string[], colours: InitialOutputs) => {
   const code: InitialOutputs = {};
   const cKeys = Object.keys(colours);
-
-  console.log(cKeys[Math.floor(Math.random() * Object.keys(colours).length)]);
 
   const pickRandomColour = (obj: InitialOutputs) => {
     const colourKeys = Object.keys(obj);

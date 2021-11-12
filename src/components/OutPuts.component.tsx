@@ -3,6 +3,7 @@ import { initialOutputs } from "../initialData";
 import { Droppable, Draggable } from "react-beautiful-dnd";
 
 import { Paper } from "@mui/material";
+import { HotelSharp } from "@mui/icons-material";
 
 interface Props {}
 
@@ -17,7 +18,7 @@ const Outputs: FC<Props> = () => {
         <Droppable droppableId={key} isDropDisabled>
           {(provided, snapshot) => (
             <div ref={provided.innerRef}>
-              <Draggable key={i} draggableId={key} index={i}>
+              <Draggable key={i} draggableId={hsl} index={i}>
                 {(dragProvided, dragSnapshot) => (
                   <div
                     ref={dragProvided.innerRef}

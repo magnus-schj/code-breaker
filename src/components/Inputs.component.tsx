@@ -1,18 +1,19 @@
 import { Paper } from "@mui/material";
 import React, { FC } from "react";
 import { Droppable, Draggable } from "react-beautiful-dnd";
-import { inputsData } from "../initialData";
+import { useAppSelector } from "../App/hooks";
 
 interface Props {}
 
 const Inputs: FC<Props> = () => {
+  const inputs = useAppSelector((state) => state.inputs);
   return (
     <div
       style={{
         display: "flex",
       }}
     >
-      {Object.entries(inputsData).map(([key, { hsl }], j) => (
+      {Object.entries(inputs).map(([key, { hsl }], j) => (
         <Paper
           elevation={3}
           sx={{

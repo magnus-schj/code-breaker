@@ -5,13 +5,13 @@ export const inputsSlice = createSlice({
   name: "colours",
   initialState: inputsData,
   reducers: {
-    // addColour(state, { payload }) {
-    //   state[payload.id] = payload;
-    // },
-    // removeColour(state, { payload }) {
-    //   state[payload].peg = [];
-    // },
+    addColour(state, { payload }) {
+      state[payload.id].hsl = payload.hsl;
+    },
+    removeColour(state, { payload }) {
+      state[payload].hsl = null;
+    },
   },
 });
 
-export const {} = inputsSlice.actions;
+export const { addColour, removeColour } = inputsSlice.actions;
