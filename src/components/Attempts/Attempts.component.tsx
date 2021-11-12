@@ -1,11 +1,11 @@
 import { FC } from "react";
 import { useAppSelector } from "../../App/hooks";
-import { Paper, Typography } from "@mui/material";
+import { Box, Paper, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   root: {
-    height: "50%",
+    minHeight: "45vh",
     width: "80%",
     display: "flex",
     flexDirection: "column",
@@ -13,7 +13,15 @@ const useStyles = makeStyles({
     padding: "0.5rem",
     margin: "5rem auto",
   },
-});
+  attempts: {
+    overflowY: "scroll",
+    height: "clamp(5rem,50%,100rem)",
+    width: "80%",
+    margin: "auto",
+    paddingLeft: "0.6rem",
+    background: theme.palette.primary.main,
+  },
+}));
 
 interface Props {}
 
@@ -31,7 +39,6 @@ const Attempts: FC<Props> = () => {
             margin: "0.1rem",
             height: "2rem",
             width: "2rem",
-            border: "1px solid black",
             background: isBlack ? "black" : "white",
           }}
         ></div>
@@ -45,7 +52,7 @@ const Attempts: FC<Props> = () => {
       <Typography variant="h4" color="initial">
         Attempts left: {code.limit - code.numTries}
       </Typography>
-      <div className="attempts">
+      <Box className={classes.attempts}>
         {code.attempts.map(({ black, white, colours }, i) => (
           <div className="attempt" key={i}>
             <Typography variant="h5" color="initial">
@@ -71,7 +78,7 @@ const Attempts: FC<Props> = () => {
             </div>
           </div>
         ))}
-      </div>
+      </Box>
     </Paper>
   );
 };

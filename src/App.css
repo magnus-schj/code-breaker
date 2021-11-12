@@ -35,15 +35,6 @@
   border-radius: 5px;
 }
 
-.attempts {
-  overflow-y: scroll;
-  border: 1px solid black;
-  height: 80%;
-  width: 80%;
-  margin: auto;
-  padding-left: 0.6rem;
-}
-
 .attempt {
   border: 1px solid black;
   margin: auto;
