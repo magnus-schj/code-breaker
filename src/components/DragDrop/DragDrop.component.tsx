@@ -1,5 +1,6 @@
-import { Dispatch, SetStateAction, FC, useState } from "react";
+import { Dispatch, SetStateAction, FC, useState, useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../../App/hooks";
+import { InputsData } from "../../interfaces";
 
 import Outputs from "../OutPuts.component";
 import Inputs from "../Inputs.component";
@@ -15,10 +16,21 @@ interface Props {
 const DragDrop: FC<Props> = ({ setDisplayWrongCodeMessage }) => {
   const dispatch = useAppDispatch();
 
+  const [allInputsFilled, setAllInputsFilled] = useState(false);
   const inputs = useAppSelector((state) => state.inputs);
 
+  useEffect(() => {
+    const checkAllInputsFilled = () => {
+      for (const [, input] of Object.entries(inputs)) {
+        if (!input.hsl) return false;
+      }
+      return true;
+    };
+    if (checkAllInputsFilled()) setAllInputsFilled(true);
+    else setAllInputsFilled(false);
+  }, [inputs]);
+
   const onDragEnd = (res: DropResult) => {
-    console.log("res:", res);
     const { destination, draggableId, source } = res;
     if (!destination) return;
 
@@ -38,8 +50,17 @@ const DragDrop: FC<Props> = ({ setDisplayWrongCodeMessage }) => {
   };
   return (
     <DragDropContext onDragEnd={onDragEnd}>
-      <Inputs />
-      <Outputs />
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <Inputs allInputsFilled={allInputsFilled} />
+        <Outputs />
+      </div>
     </DragDropContext>
   );
 };

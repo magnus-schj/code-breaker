@@ -1,16 +1,20 @@
-import { Paper } from "@mui/material";
 import React, { FC } from "react";
 import { Droppable, Draggable } from "react-beautiful-dnd";
 import { useAppSelector } from "../App/hooks";
 
-interface Props {}
+import { Button, Paper } from "@mui/material";
+interface Props {
+  allInputsFilled: boolean;
+}
 
-const Inputs: FC<Props> = () => {
+const Inputs: FC<Props> = ({ allInputsFilled }) => {
   const inputs = useAppSelector((state) => state.inputs);
   return (
     <div
       style={{
         display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
       }}
     >
       {Object.entries(inputs).map(([key, { hsl }], j) => (
@@ -70,6 +74,9 @@ const Inputs: FC<Props> = () => {
           </div>
         </Paper>
       ))}
+      <div>
+        {allInputsFilled && <Button variant="contained">Submit</Button>}
+      </div>
     </div>
   );
 };
