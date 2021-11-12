@@ -11,7 +11,16 @@ export const inputsSlice = createSlice({
     removeColour(state, { payload }) {
       state[payload].hsl = null;
     },
+    swapColours(state, { payload }) {
+      console.log("object");
+      const {
+        source: [sourceKey, sourceHsl],
+        dest: [destKey, destHsl],
+      } = payload;
+      state[sourceKey].hsl = destHsl;
+      state[destKey].hsl = sourceHsl;
+    },
   },
 });
 
-export const { addColour, removeColour } = inputsSlice.actions;
+export const { addColour, removeColour, swapColours } = inputsSlice.actions;

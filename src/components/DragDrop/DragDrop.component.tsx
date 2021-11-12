@@ -6,7 +6,7 @@ import Inputs from "../Inputs.component";
 
 import { DragDropContext, DropResult } from "react-beautiful-dnd";
 import { initialOutputs } from "../../initialData";
-import { addColour } from "../../features/inputs/inputs.slice";
+import { addColour, swapColours } from "../../features/inputs/inputs.slice";
 
 interface Props {
   setDisplayWrongCodeMessage: Dispatch<SetStateAction<boolean>>;
@@ -22,21 +22,18 @@ const DragDrop: FC<Props> = ({ setDisplayWrongCodeMessage }) => {
     const { destination, draggableId, source } = res;
     if (!destination) return;
 
+    // if the colour is coming from the output
     if (initialOutputs[source.droppableId]) {
       dispatch(addColour({ id: destination.droppableId, hsl: draggableId }));
       return;
     }
+    // if the colours are gonna be swapped
     if (inputs[source.droppableId]) {
-      // const hsl = inputs[source.droppableId].hsl;
-      // setInputs({
-      //   ...inputs,
-      //   [source.droppableId]: { value: "", hsl: undefined },
-      //   [destination.droppableId]: {
-      //     value: "",
-      //     hsl: hsl,
-      //   },
-      // });
-      alert("here!");
+      const payload = {
+        source: [source.droppableId, inputs[source.droppableId].hsl],
+        dest: [destination.droppableId, inputs[destination.droppableId].hsl],
+      };
+      dispatch(swapColours(payload));
     }
   };
   return (

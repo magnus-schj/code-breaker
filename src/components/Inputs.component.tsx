@@ -21,6 +21,7 @@ const Inputs: FC<Props> = () => {
             width: "6rem",
             margin: "2rem",
           }}
+          key={key}
         >
           <div style={{ height: "100%", width: "100%" }}>
             <Droppable droppableId={key}>

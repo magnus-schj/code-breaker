@@ -15,7 +15,7 @@ const Outputs: FC<Props> = () => {
       }}
     >
       {Object.entries(initialOutputs).map(([key, { hsl }], i) => (
-        <Droppable droppableId={key} isDropDisabled>
+        <Droppable droppableId={key} isDropDisabled key={key}>
           {(provided, snapshot) => (
             <div ref={provided.innerRef}>
               <Draggable key={i} draggableId={hsl} index={i}>
