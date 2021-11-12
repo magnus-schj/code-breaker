@@ -1,21 +1,35 @@
+import { v4 } from "uuid";
+
 // colours
 export interface Colour {
   hsl: string;
-  id: string;
+  name: string;
 }
 
 export interface ColoursType {
   [key: string]: Colour;
 }
 
+export interface InitialOutputs {
+  [key: string]: Colour;
+}
 export interface NewColourOrigin extends Colour {
   dropId?: string;
+}
+
+// input
+export interface Input {
+  hsl: string | null | undefined;
+  index: number;
+}
+export interface InputsData {
+  [key: string]: Input;
 }
 
 // peg
 export interface Peg {
   id: string;
-  peg: Colour[];
+  peg: Colour;
 }
 
 export interface PegsType {

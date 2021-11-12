@@ -1,7 +1,7 @@
 import { FC, useState, useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../../App/hooks";
 import { makeCode } from "../../features/code/code.slice";
-import { colourData } from "../../initialData";
+import { initialOutputs } from "../../initialData";
 
 import { AppBar, Toolbar, Button, IconButton } from "@mui/material";
 import { generateCode } from "./utils";
@@ -14,14 +14,14 @@ const Game: FC = () => {
 
   const [displayWrongCodeMessage, setDisplayWrongCodeMessage] = useState(false);
 
-  const inputs = useAppSelector((state) => state.inputs);
-  const codeSlice = useAppSelector((state) => state.code);
+  // const inputs = useAppSelector((state) => state.inputs);
+  // const codeSlice = useAppSelector((state) => state.code);
 
-  useEffect(() => {
-    // make a code
-    const keys = Object.keys(inputs);
-    dispatch(makeCode(generateCode(keys, colourData)));
-  }, []);
+  // useEffect(() => {
+  //   // make a code
+  //   const keys = Object.keys(inputs);
+  //   dispatch(makeCode(generateCode(keys, initialOutputs)));
+  // }, []);
 
   return (
     <div className="game">
