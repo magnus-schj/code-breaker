@@ -6,13 +6,14 @@ export const inputsSlice = createSlice({
   initialState: inputsData,
   reducers: {
     addColour(state, { payload }) {
-      state[payload.id].hsl = payload.hsl;
+      const { id, hsl, name } = payload;
+      state[id].hsl = hsl;
+      state[id].name = name;
     },
     removeColour(state, { payload }) {
       state[payload].hsl = null;
     },
     swapColours(state, { payload }) {
-      console.log("object");
       const {
         source: [sourceKey, sourceHsl],
         dest: [destKey, destHsl],

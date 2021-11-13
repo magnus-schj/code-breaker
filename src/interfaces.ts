@@ -17,26 +17,17 @@ export interface NewColourOrigin extends Colour {
 export interface Input {
   hsl: string | null | undefined;
   index: number;
+  name: string | null | undefined;
 }
 export interface InputsData {
   [key: string]: Input;
-}
-
-// peg
-export interface Peg {
-  id: string;
-  peg: Colour;
-}
-
-export interface PegsType {
-  [key: string]: Peg;
 }
 
 // code slice
 export interface Attempt {
   black: number;
   white: number;
-  colours?: string[];
+  colours?: (string | null | undefined)[];
 }
 
 export interface CodeSlice {

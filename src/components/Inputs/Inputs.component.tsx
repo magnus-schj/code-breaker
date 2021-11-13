@@ -1,14 +1,31 @@
 import React, { FC } from "react";
 import { Droppable, Draggable } from "react-beautiful-dnd";
-import { useAppSelector } from "../App/hooks";
+import { useAppDispatch, useAppSelector } from "../../App/hooks";
 
 import { Button, Paper } from "@mui/material";
+import {
+  codeSlice,
+  incrementTries,
+  setCodeBroken,
+  addAttempt,
+} from "../../features/code/code.slice";
+import { Attempt } from "../../interfaces";
 interface Props {
   allInputsFilled: boolean;
 }
 
 const Inputs: FC<Props> = ({ allInputsFilled }) => {
+  const dispatch = useAppDispatch();
   const inputs = useAppSelector((state) => state.inputs);
+  const codeSlice = useAppSelector((state) => state.code);
+
+  const handleClick = () => {
+    // ? todo: remove wrongInputMessage
+
+    dispatch(incrementTries());
+
+    const { code } = codeSlice;
+  };
   return (
     <div
       style={{
@@ -75,7 +92,11 @@ const Inputs: FC<Props> = ({ allInputsFilled }) => {
         </Paper>
       ))}
       <div>
-        {allInputsFilled && <Button variant="contained">Submit</Button>}
+        {allInputsFilled && (
+          <Button onClick={handleClick} variant="contained">
+            Submit
+          </Button>
+        )}
       </div>
     </div>
   );

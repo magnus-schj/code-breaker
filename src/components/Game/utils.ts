@@ -2,7 +2,6 @@ import { Colour, InitialOutputs } from "../../interfaces";
 
 export const generateCode = (keys: string[], colours: InitialOutputs) => {
   const code: InitialOutputs = {};
-  const cKeys = Object.keys(colours);
 
   const pickRandomColour = (obj: InitialOutputs) => {
     const colourKeys = Object.keys(obj);

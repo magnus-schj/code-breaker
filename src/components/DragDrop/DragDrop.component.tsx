@@ -3,7 +3,7 @@ import { useAppDispatch, useAppSelector } from "../../App/hooks";
 import { InputsData } from "../../interfaces";
 
 import Outputs from "../OutPuts.component";
-import Inputs from "../Inputs.component";
+import Inputs from "../Inputs/Inputs.component";
 
 import { DragDropContext, DropResult } from "react-beautiful-dnd";
 import { initialOutputs } from "../../initialData";
@@ -36,7 +36,13 @@ const DragDrop: FC<Props> = ({ setDisplayWrongCodeMessage }) => {
 
     // if the colour is coming from the output
     if (initialOutputs[source.droppableId]) {
-      dispatch(addColour({ id: destination.droppableId, hsl: draggableId }));
+      dispatch(
+        addColour({
+          id: destination.droppableId,
+          hsl: draggableId,
+          name: source.droppableId,
+        })
+      );
       return;
     }
     // if the colours are gonna be swapped
