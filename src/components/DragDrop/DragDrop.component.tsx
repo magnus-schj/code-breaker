@@ -48,8 +48,20 @@ const DragDrop: FC<Props> = ({ setDisplayWrongCodeMessage }) => {
     // if the colours are gonna be swapped
     if (inputs[source.droppableId]) {
       const payload = {
-        source: [source.droppableId, inputs[source.droppableId].hsl],
-        dest: [destination.droppableId, inputs[destination.droppableId].hsl],
+        source: [
+          source.droppableId,
+          {
+            hsl: inputs[source.droppableId].hsl,
+            name: inputs[source.droppableId].name,
+          },
+        ],
+        dest: [
+          destination.droppableId,
+          {
+            hsl: inputs[destination.droppableId].hsl,
+            name: inputs[destination.droppableId].name,
+          },
+        ],
       };
       dispatch(swapColours(payload));
     }
@@ -64,7 +76,10 @@ const DragDrop: FC<Props> = ({ setDisplayWrongCodeMessage }) => {
           justifyContent: "center",
         }}
       >
-        <Inputs allInputsFilled={allInputsFilled} />
+        <Inputs
+          allInputsFilled={allInputsFilled}
+          setDisplayWrongCodeMessage={setDisplayWrongCodeMessage}
+        />
         <Outputs />
       </div>
     </DragDropContext>

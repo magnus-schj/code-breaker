@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { Dispatch, FC, SetStateAction } from "react";
 import { Droppable, Draggable } from "react-beautiful-dnd";
 import { useAppDispatch, useAppSelector } from "../../App/hooks";
 
@@ -10,21 +10,30 @@ import {
   addAttempt,
 } from "../../features/code/code.slice";
 import { Attempt } from "../../interfaces";
+import { checkIfCodeBroken, handleWrongCode } from "./inputs.utils";
 interface Props {
   allInputsFilled: boolean;
+  setDisplayWrongCodeMessage: Dispatch<SetStateAction<boolean>>;
 }
 
-const Inputs: FC<Props> = ({ allInputsFilled }) => {
+const Inputs: FC<Props> = ({ allInputsFilled, setDisplayWrongCodeMessage }) => {
   const dispatch = useAppDispatch();
   const inputs = useAppSelector((state) => state.inputs);
   const codeSlice = useAppSelector((state) => state.code);
 
   const handleClick = () => {
     // ? todo: remove wrongInputMessage
+    if (codeSlice.codeBroken) return;
 
     dispatch(incrementTries());
-
     const { code } = codeSlice;
+    const isCodeBroken = checkIfCodeBroken(inputs, code);
+
+    isCodeBroken
+      ? dispatch(setCodeBroken(isCodeBroken))
+      : handleWrongCode(setDisplayWrongCodeMessage, codeSlice, inputs, (obj) =>
+          dispatch(addAttempt(obj))
+        );
   };
   return (
     <div
@@ -93,7 +102,11 @@ const Inputs: FC<Props> = ({ allInputsFilled }) => {
       ))}
       <div>
         {allInputsFilled && (
-          <Button onClick={handleClick} variant="contained">
+          <Button
+            onClick={handleClick}
+            variant="contained"
+            disabled={codeSlice.codeBroken}
+          >
             Submit
           </Button>
         )}

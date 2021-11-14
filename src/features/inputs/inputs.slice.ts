@@ -14,12 +14,16 @@ export const inputsSlice = createSlice({
       state[payload].hsl = null;
     },
     swapColours(state, { payload }) {
+      console.log(`payload`, payload);
       const {
-        source: [sourceKey, sourceHsl],
-        dest: [destKey, destHsl],
+        source: [sourceKey, source],
+        dest: [destKey, dest],
       } = payload;
-      state[sourceKey].hsl = destHsl;
-      state[destKey].hsl = sourceHsl;
+      state[sourceKey].hsl = dest.hsl;
+      state[sourceKey].name = dest.name;
+
+      state[destKey].hsl = source.hsl;
+      state[destKey].name = source.name;
     },
   },
 });
