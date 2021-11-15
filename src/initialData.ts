@@ -1,40 +1,46 @@
-import { ColoursType, PegInputsType } from "./interfaces";
+import { InitialOutputs, InputsData, PegsType } from "./interfaces";
+import { v4 } from "uuid";
 
-export const colourData: ColoursType = {
-  pinkOrigin: {
+// available colours
+export const initialOutputs: InitialOutputs = {
+  purple: {
+    hsl: "hsl(280, 83%, 53%)",
+    name: "purple",
+  },
+  pink: {
     hsl: "hsl(329, 83%, 53%)",
-    id: "pinkOrigin",
+    name: "pink",
   },
-  purpleOrigin: {
-    hsl: "hsl(300, 100%, 14%)",
-    id: "purpleOrigin",
+  red: {
+    hsl: "hsl(354, 83%, 53%)",
+    name: "red",
   },
-  blueOrigin: {
-    hsl: "hsl(226, 65%, 35%)",
-    id: "blueOrigin",
+  yellow: {
+    hsl: "hsl(400, 83%, 53%)",
+    name: "yellow",
   },
-  greenOrigin: {
-    hsl: "hsl(149, 39%, 49%)",
-    id: "greenOrigin",
-  },
-  yellowOrigin: {
-    hsl: "hsl(54, 100%, 54%)",
-    id: "yellowOrigin",
-  },
-  orangeOrigin: {
-    hsl: "hsl(22, 100%, 56%)",
-    id: "orangeOrigin",
-  },
-  redOrigin: {
-    hsl: "hsl(356, 100%, 41%)",
-    id: "redOrigin",
+  green: {
+    hsl: "hsl(450, 83%, 53%)",
+    name: "green",
   },
 };
 
-export const pegInputsData: PegInputsType = {
-  one: { id: "one", peg: [] },
-  two: { id: "two", peg: [] },
-  three: { id: "three", peg: [] },
-  four: { id: "four", peg: [] },
-  five: { id: "five", peg: [] },
+// inputs
+export const inputsData: InputsData = {
+  [v4()]: {
+    hsl: null,
+    name: null,
+    index: 0,
+  },
+  [v4()]: {
+    hsl: null,
+    name: null,
+    index: 1,
+  },
+  [v4()]: {
+    hsl: null,
+    name: null,
+
+    index: 2,
+  },
 };
