@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, Key } from "react";
 import { useAppSelector } from "../../App/hooks";
 import { Box, Paper, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
@@ -19,7 +19,6 @@ const useStyles = makeStyles((theme) => ({
     width: "80%",
     margin: "auto",
     paddingLeft: "0.6rem",
-    background: theme.palette.primary.main,
   },
 }));
 
@@ -59,7 +58,7 @@ const Attempts: FC<Props> = () => {
               {i + 1}:
             </Typography>
             <div className="history">
-              {colours?.map((colour, j) => (
+              {colours?.map((colour: any, j: Key | null | undefined) => (
                 <div
                   key={j}
                   style={{

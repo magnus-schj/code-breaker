@@ -1,3 +1,4 @@
+import { TypeBackground } from "@mui/material/styles/createPalette";
 import { v4 } from "uuid";
 
 // colours
@@ -27,7 +28,7 @@ export interface InputsData {
 export interface Attempt {
   black: number;
   white: number;
-  colours?: (string | null | undefined)[];
+  colours?: (string | number | undefined)[];
 }
 
 export interface CodeSlice {
