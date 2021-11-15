@@ -3,13 +3,13 @@ import { Droppable, Draggable } from "react-beautiful-dnd";
 import { useAppDispatch, useAppSelector } from "../../App/hooks";
 
 import { Button, Paper } from "@mui/material";
+import DeleteIcon from "@mui/icons-material/Delete";
 import {
   codeSlice,
   incrementTries,
   setCodeBroken,
   addAttempt,
 } from "../../features/code/code.slice";
-import { Attempt } from "../../interfaces";
 import { checkIfCodeBroken, createAttempt } from "./inputs.utils";
 interface Props {
   allInputsFilled: boolean;
@@ -42,6 +42,33 @@ const Inputs: FC<Props> = ({ allInputsFilled, setDisplayWrongCodeMessage }) => {
         justifyContent: "center",
       }}
     >
+      <Paper
+        elevation={3}
+        sx={{
+          height: "6rem",
+          width: "6rem",
+          margin: "2rem",
+        }}
+      >
+        <Droppable droppableId="delete">
+          {(provided, snapshot) => (
+            <div
+              ref={provided.innerRef}
+              style={{
+                height: "100%",
+                width: "100%",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                background: "grey",
+              }}
+            >
+              <DeleteIcon />
+              {provided.placeholder}
+            </div>
+          )}
+        </Droppable>
+      </Paper>
       {Object.entries(inputs).map(([key, { hsl }], j) => (
         <Paper
           elevation={3}

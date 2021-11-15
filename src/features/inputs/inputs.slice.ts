@@ -12,6 +12,7 @@ export const inputsSlice = createSlice({
     },
     removeColour(state, { payload }) {
       state[payload].hsl = null;
+      state[payload].name = null;
     },
     swapColours(state, { payload }) {
       console.log(`payload`, payload);

@@ -40,7 +40,16 @@ export const inputsData: InputsData = {
   [v4()]: {
     hsl: null,
     name: null,
-
     index: 2,
+  },
+  [v4()]: {
+    hsl: null,
+    name: null,
+    index: 3,
+  },
+  [v4()]: {
+    hsl: null,
+    name: null,
+    index: 4,
   },
 };

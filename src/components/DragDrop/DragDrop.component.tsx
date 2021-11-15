@@ -7,7 +7,11 @@ import Inputs from "../Inputs/Inputs.component";
 
 import { DragDropContext, DropResult } from "react-beautiful-dnd";
 import { initialOutputs } from "../../initialData";
-import { addColour, swapColours } from "../../features/inputs/inputs.slice";
+import {
+  addColour,
+  removeColour,
+  swapColours,
+} from "../../features/inputs/inputs.slice";
 
 interface Props {
   setDisplayWrongCodeMessage: Dispatch<SetStateAction<boolean>>;
@@ -32,7 +36,21 @@ const DragDrop: FC<Props> = ({ setDisplayWrongCodeMessage }) => {
 
   const onDragEnd = (res: DropResult) => {
     const { destination, draggableId, source } = res;
-    if (!destination) return;
+
+    const isSourceOutput = Object.entries(initialOutputs).find(
+      ([key, { name }]) => name === source.droppableId
+    );
+    if (
+      !destination ||
+      (destination.droppableId === "delete" && isSourceOutput)
+    )
+      return;
+
+    // if the destination is the delete-droppable
+    if (destination.droppableId === "delete" && !isSourceOutput) {
+      dispatch(removeColour(source.droppableId));
+      return;
+    }
 
     // if the colour is coming from the output
     if (initialOutputs[source.droppableId]) {
@@ -64,6 +82,7 @@ const DragDrop: FC<Props> = ({ setDisplayWrongCodeMessage }) => {
         ],
       };
       dispatch(swapColours(payload));
+      return;
     }
   };
   return (
