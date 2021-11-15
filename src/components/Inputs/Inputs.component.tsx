@@ -10,7 +10,7 @@ import {
   addAttempt,
 } from "../../features/code/code.slice";
 import { Attempt } from "../../interfaces";
-import { checkIfCodeBroken, handleWrongCode } from "./inputs.utils";
+import { checkIfCodeBroken, createAttempt } from "./inputs.utils";
 interface Props {
   allInputsFilled: boolean;
   setDisplayWrongCodeMessage: Dispatch<SetStateAction<boolean>>;
@@ -24,16 +24,15 @@ const Inputs: FC<Props> = ({ allInputsFilled, setDisplayWrongCodeMessage }) => {
   const handleClick = () => {
     // ? todo: remove wrongInputMessage
     if (codeSlice.codeBroken) return;
-
+    setDisplayWrongCodeMessage(false);
     dispatch(incrementTries());
     const { code } = codeSlice;
     const isCodeBroken = checkIfCodeBroken(inputs, code);
 
+    createAttempt(codeSlice, inputs, (obj) => dispatch(addAttempt(obj)));
     isCodeBroken
       ? dispatch(setCodeBroken(isCodeBroken))
-      : handleWrongCode(setDisplayWrongCodeMessage, codeSlice, inputs, (obj) =>
-          dispatch(addAttempt(obj))
-        );
+      : setDisplayWrongCodeMessage(true);
   };
   return (
     <div

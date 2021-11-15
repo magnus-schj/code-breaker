@@ -19,8 +19,7 @@ export const checkIfCodeBroken = (
 
 // -----------------------------------------------------------
 
-export const handleWrongCode = (
-  setDisplay: React.Dispatch<React.SetStateAction<boolean>>,
+export const createAttempt = (
   codeSlice: CodeSlice,
   inputs: InputsData,
   addAttempt: (attempt: Attempt) => void
@@ -28,7 +27,6 @@ export const handleWrongCode = (
   if (!codeSlice.code) return;
 
   const { code } = codeSlice;
-  setDisplay(true);
 
   const codeEntries = Object.entries(code);
   const inputEntries = Object.entries(inputs);
