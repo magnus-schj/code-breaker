@@ -28,7 +28,7 @@ export interface InputsData {
 export interface Attempt {
   black: number;
   white: number;
-  colours?: (string | number | undefined)[];
+  colours?: (string | number | null | undefined)[];
 }
 
 export interface CodeSlice {
