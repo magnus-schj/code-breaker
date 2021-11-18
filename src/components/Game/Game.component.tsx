@@ -9,7 +9,10 @@ import Attempts from "../Attempts/Attempts.component";
 import DragDrop from "../DragDrop/DragDrop.component";
 import { Help } from "@mui/icons-material";
 
-const Game: FC = () => {
+interface Props {
+  setGameInitialized: React.Dispatch<React.SetStateAction<boolean>>;
+}
+const Game: FC<Props> = ({ setGameInitialized }) => {
   const dispatch = useAppDispatch();
 
   const [displayWrongCodeMessage, setDisplayWrongCodeMessage] = useState(false);
@@ -25,7 +28,12 @@ const Game: FC = () => {
       <AppBar position="fixed" color="primary">
         <Toolbar>
           <span style={{ flexGrow: 1 }}>
-            <Button variant="contained">Quit</Button>
+            <Button
+              onClick={() => setGameInitialized(false)}
+              variant="contained"
+            >
+              Quit
+            </Button>
           </span>
           <IconButton color="default" aria-label="help">
             <Help />

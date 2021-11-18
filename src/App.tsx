@@ -9,7 +9,7 @@ function App() {
   return (
     <div className="App">
       {gameInitialized ? (
-        <Game />
+        <Game setGameInitialized={setGameInitialized} />
       ) : (
         <div className="title-screen">
           <Typography variant="h3" color="initial">
