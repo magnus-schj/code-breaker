@@ -28,13 +28,13 @@ function App() {
           </Button>
 
           <a
-            style={{ minWidth: "50%" }}
+            style={{ minWidth: "50%", margin: "auto" }}
             href="https://github.com/magnus-schj/code-breaker"
           >
             <Button
               variant="contained"
               sx={{
-                minWidth: "50%",
+                minWidth: "100%",
                 padding: "1rem",
               }}
             >
