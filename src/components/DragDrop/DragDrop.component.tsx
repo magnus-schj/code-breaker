@@ -12,6 +12,7 @@ import {
   removeColour,
   swapColours,
 } from "../../features/inputs/inputs.slice";
+import { useMediaQuery } from "@mui/material";
 
 interface Props {
   setDisplayWrongCodeMessage: Dispatch<SetStateAction<boolean>>;
@@ -93,6 +94,8 @@ const DragDrop: FC<Props> = ({ setDisplayWrongCodeMessage }) => {
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
+          width: "80%",
+          margin: "auto",
         }}
       >
         <Inputs

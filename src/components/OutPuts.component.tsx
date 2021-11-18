@@ -2,11 +2,13 @@ import React, { FC } from "react";
 import { initialOutputs } from "../initialData";
 import { Droppable, Draggable } from "react-beautiful-dnd";
 
-import { Paper } from "@mui/material";
+import { Paper, useMediaQuery } from "@mui/material";
 
 interface Props {}
 
 const Outputs: FC<Props> = () => {
+  // media queries
+  const belowBreakpoint = useMediaQuery("(max-width:924px)");
   return (
     <div
       style={{
@@ -16,7 +18,7 @@ const Outputs: FC<Props> = () => {
       {Object.entries(initialOutputs).map(([key, { hsl }], i) => (
         <Droppable droppableId={key} isDropDisabled key={key}>
           {(provided, snapshot) => (
-            <div style={{ margin: "clamp(0.5rem, 1rem, 4rem)" }}>
+            <div style={{ margin: belowBreakpoint ? "0.5rem" : "1rem" }}>
               <div ref={provided.innerRef}>
                 <Draggable key={i} draggableId={hsl} index={i}>
                   {(dragProvided, dragSnapshot) => (
@@ -28,8 +30,8 @@ const Outputs: FC<Props> = () => {
                       {/* what appears */}
                       <Paper
                         sx={{
-                          height: "clamp(2rem, 6rem, 8rem)",
-                          width: "clamp(2rem, 6rem, 8rem)",
+                          height: belowBreakpoint ? "3rem" : "6rem",
+                          width: belowBreakpoint ? "3rem" : "6rem",
                         }}
                       >
                         <div

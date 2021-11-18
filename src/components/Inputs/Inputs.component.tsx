@@ -2,7 +2,7 @@ import React, { Dispatch, FC, SetStateAction } from "react";
 import { Droppable, Draggable } from "react-beautiful-dnd";
 import { useAppDispatch, useAppSelector } from "../../App/hooks";
 
-import { Button, Paper } from "@mui/material";
+import { Button, Paper, useMediaQuery } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import {
   codeSlice,
@@ -17,9 +17,13 @@ interface Props {
 }
 
 const Inputs: FC<Props> = ({ allInputsFilled, setDisplayWrongCodeMessage }) => {
+  // dispatch and selector
   const dispatch = useAppDispatch();
   const inputs = useAppSelector((state) => state.inputs);
   const codeSlice = useAppSelector((state) => state.code);
+
+  // media queries
+  const belowBreakpoint = useMediaQuery("(max-width:924px)");
 
   const handleClick = () => {
     // ? todo: remove wrongInputMessage
@@ -45,9 +49,9 @@ const Inputs: FC<Props> = ({ allInputsFilled, setDisplayWrongCodeMessage }) => {
       <Paper
         elevation={3}
         sx={{
-          height: "6rem",
-          width: "6rem",
-          margin: "2rem",
+          height: belowBreakpoint ? "3rem" : "6rem",
+          width: belowBreakpoint ? "3rem" : "6rem",
+          margin: belowBreakpoint ? "1" : "2rem",
         }}
       >
         <Droppable droppableId="delete">
@@ -73,9 +77,9 @@ const Inputs: FC<Props> = ({ allInputsFilled, setDisplayWrongCodeMessage }) => {
         <Paper
           elevation={3}
           sx={{
-            height: "6rem",
-            width: "6rem",
-            margin: "2rem",
+            height: belowBreakpoint ? "3rem" : "6rem",
+            width: belowBreakpoint ? "3rem" : "6rem",
+            margin: belowBreakpoint ? "1" : "2rem",
           }}
           key={key}
         >
@@ -102,8 +106,8 @@ const Inputs: FC<Props> = ({ allInputsFilled, setDisplayWrongCodeMessage }) => {
                         >
                           <Paper
                             sx={{
-                              height: "5rem",
-                              width: "5rem",
+                              height: belowBreakpoint ? "2.5rem" : "5rem",
+                              width: belowBreakpoint ? "2.5rem" : "5rem",
                             }}
                           >
                             <div
