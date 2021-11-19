@@ -21,14 +21,15 @@ function App() {
             sx={{
               margin: "0.5rem",
               padding: "1rem",
-              minWidth: "50%",
+              width: "50vw",
+              marginTop: "2rem",
             }}
           >
             Start game
           </Button>
 
           <a
-            style={{ minWidth: "50%", margin: "auto" }}
+            style={{ minWidth: "50vw", margin: "auto" }}
             href="https://github.com/magnus-schj/code-breaker"
           >
             <Button

@@ -23,15 +23,17 @@ const Game: FC<Props> = ({ setGameInitialized }) => {
     dispatch(setCode(generateCode(Object.keys(inputs), initialOutputs)));
   }, []);
 
+  const handleClick = () => {
+    setGameInitialized(false);
+    dispatch(setCode(null));
+  };
+
   return (
     <div className="game">
       <AppBar position="fixed" color="primary">
         <Toolbar>
           <span style={{ flexGrow: 1 }}>
-            <Button
-              onClick={() => setGameInitialized(false)}
-              variant="contained"
-            >
+            <Button onClick={handleClick} variant="contained">
               Quit
             </Button>
           </span>

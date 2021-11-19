@@ -4,5 +4,18 @@
   align-items: center;
   justify-content: space-around;
   height: clamp(80vh, 90vh, 95vh);
-  padding: 4rem;
+  text-align: center;
+}
+
+.attempt {
+  display: flex;
+  justify-content: space-between;
+}
+
+.history {
+  display: flex;
+  align-items: flex-start;
+}
+.attempt-colours {
+  display: flex;
 }

@@ -1,6 +1,6 @@
 import { FC, Key } from "react";
 import { useAppSelector } from "../../App/hooks";
-import { Box, Paper, Typography } from "@mui/material";
+import { Box, Paper, Typography, useMediaQuery } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 
 const useStyles = makeStyles((theme) => ({
@@ -27,20 +27,25 @@ interface Props {}
 const Attempts: FC<Props> = () => {
   const classes = useStyles();
 
+  // media queries
+  const iPadWidth = useMediaQuery("(max-width:1250px)");
+  const phoneWidth = useMediaQuery("(max-width:670px)");
+  const heightAndWidth = phoneWidth ? "1rem" : iPadWidth ? "2rem" : "4rem";
+
   const code = useAppSelector((state) => state.code);
   const renderPegs = (num: number, isBlack: boolean) => {
     const pegs = [];
     for (let i = 0; i < num; i++) {
       const element = (
-        <div
+        <Paper
           key={i}
           style={{
-            margin: "0.1rem",
-            height: "2rem",
-            width: "2rem",
+            margin: "0.2rem",
+            height: heightAndWidth,
+            width: heightAndWidth,
             background: isBlack ? "black" : "white",
           }}
-        ></div>
+        ></Paper>
       );
       pegs.push(element);
     }
@@ -54,24 +59,23 @@ const Attempts: FC<Props> = () => {
       <Box className={classes.attempts}>
         {code.attempts.map(({ black, white, colours }, i) => (
           <div className="attempt" key={i}>
-            <Typography variant="h5" color="initial">
+            <Typography variant={iPadWidth ? "h5" : "h3"} color="initial">
               {i + 1}:
             </Typography>
             <div className="history">
               {colours?.map((colour: any, j: Key | null | undefined) => (
-                <div
+                <Paper
                   key={j}
                   style={{
-                    margin: "0.1rem",
-                    height: "2rem",
-                    width: "2rem",
-                    border: "1px solid black",
+                    margin: "0.2rem",
+                    height: heightAndWidth,
+                    width: heightAndWidth,
                     background: colour,
                   }}
-                ></div>
+                ></Paper>
               ))}
             </div>
-            <div className="attempt-pegs">
+            <div className="attempt-colours">
               {renderPegs(black, true)}
               {renderPegs(white, false)}
             </div>
