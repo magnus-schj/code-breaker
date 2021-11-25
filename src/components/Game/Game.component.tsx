@@ -9,8 +9,8 @@ import HelpComponent from "../Help/Help.component";
 
 import { AnimatePresence, motion } from "framer-motion";
 
-import { AppBar, Toolbar, Button, IconButton } from "@mui/material";
-import { Help } from "@mui/icons-material";
+import { AppBar, Toolbar, Button, IconButton, Snackbar } from "@mui/material";
+import { Help, Close } from "@mui/icons-material";
 
 interface Props {
   setGameInitialized: React.Dispatch<React.SetStateAction<boolean>>;
@@ -18,7 +18,6 @@ interface Props {
 const Game: FC<Props> = ({ setGameInitialized }) => {
   const dispatch = useAppDispatch();
 
-  const [displayWrongCodeMessage, setDisplayWrongCodeMessage] = useState(false);
   const [helpOpen, setHelpOpen] = useState(false);
 
   const inputs = useAppSelector((state) => state.inputs);
@@ -56,7 +55,7 @@ const Game: FC<Props> = ({ setGameInitialized }) => {
       <Attempts />
 
       {/* dragdrop */}
-      <DragDrop setDisplayWrongCodeMessage={setDisplayWrongCodeMessage} />
+      <DragDrop />
       {/* help window */}
       <AnimatePresence initial={false} exitBeforeEnter={true}>
         {helpOpen && <HelpComponent handleClose={() => setHelpOpen(false)} />}

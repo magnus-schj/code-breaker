@@ -14,11 +14,9 @@ import {
 } from "../../features/inputs/inputs.slice";
 import { useMediaQuery } from "@mui/material";
 
-interface Props {
-  setDisplayWrongCodeMessage: Dispatch<SetStateAction<boolean>>;
-}
+interface Props {}
 
-const DragDrop: FC<Props> = ({ setDisplayWrongCodeMessage }) => {
+const DragDrop: FC<Props> = () => {
   const dispatch = useAppDispatch();
 
   const [allInputsFilled, setAllInputsFilled] = useState(false);
@@ -98,10 +96,7 @@ const DragDrop: FC<Props> = ({ setDisplayWrongCodeMessage }) => {
           margin: "auto",
         }}
       >
-        <Inputs
-          allInputsFilled={allInputsFilled}
-          setDisplayWrongCodeMessage={setDisplayWrongCodeMessage}
-        />
+        <Inputs allInputsFilled={allInputsFilled} />
         <Outputs />
       </div>
     </DragDropContext>

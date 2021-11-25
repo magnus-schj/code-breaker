@@ -56,6 +56,7 @@ const Attempts: FC<Props> = () => {
       <Typography variant="h4" color="initial">
         Attempts left: {code.limit - code.numTries}
       </Typography>
+
       <Box className={classes.attempts}>
         {code.attempts.map(({ black, white, colours }, i) => (
           <div className="attempt" key={i}>
