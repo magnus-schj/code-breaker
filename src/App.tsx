@@ -15,33 +15,39 @@ function App() {
           <Typography variant="h3" color="initial">
             Code breaker
           </Typography>
-          <Button
-            variant="contained"
-            onClick={() => setGameInitialized(true)}
-            sx={{
-              margin: "0.5rem",
-              padding: "1rem",
-              width: "50vw",
-              marginTop: "2rem",
-            }}
-          >
-            Start game
-          </Button>
-
-          <a
-            style={{ minWidth: "50vw", margin: "auto" }}
-            href="https://github.com/magnus-schj/code-breaker"
-          >
+          <div className="button-container">
             <Button
               variant="contained"
+              onClick={() => setGameInitialized(true)}
               sx={{
-                minWidth: "100%",
+                margin: "0.5rem",
                 padding: "1rem",
+                minWidth: "50vw",
+                marginTop: "2rem",
               }}
             >
-              Source
+              Start game
             </Button>
-          </a>
+
+            <a
+              style={{
+                minWidth: "50vw",
+                margin: "auto",
+                textDecoration: "none",
+              }}
+              href="https://github.com/magnus-schj/code-breaker"
+            >
+              <Button
+                variant="contained"
+                sx={{
+                  minWidth: "100%",
+                  padding: "1rem",
+                }}
+              >
+                Source
+              </Button>
+            </a>
+          </div>
         </div>
       )}
     </div>
