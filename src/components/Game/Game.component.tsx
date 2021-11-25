@@ -1,12 +1,15 @@
 import { FC, useState, useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../../App/hooks";
 import { setCode } from "../../features/code/code.slice";
-import { initialOutputs } from "../../initialData";
-
-import { AppBar, Toolbar, Button, IconButton } from "@mui/material";
 import { generateCode } from "./utils";
+import { initialOutputs } from "../../initialData";
 import Attempts from "../Attempts/Attempts.component";
 import DragDrop from "../DragDrop/DragDrop.component";
+import HelpComponent from "../Help/Help.component";
+
+import { AnimatePresence, motion } from "framer-motion";
+
+import { AppBar, Toolbar, Button, IconButton } from "@mui/material";
 import { Help } from "@mui/icons-material";
 
 interface Props {
@@ -16,6 +19,7 @@ const Game: FC<Props> = ({ setGameInitialized }) => {
   const dispatch = useAppDispatch();
 
   const [displayWrongCodeMessage, setDisplayWrongCodeMessage] = useState(false);
+  const [helpOpen, setHelpOpen] = useState(false);
 
   const inputs = useAppSelector((state) => state.inputs);
 
@@ -28,6 +32,11 @@ const Game: FC<Props> = ({ setGameInitialized }) => {
     dispatch(setCode(null));
   };
 
+  const onMotionClick = () => {
+    console.log(helpOpen);
+    setHelpOpen(!helpOpen);
+  };
+
   return (
     <div className="game">
       <AppBar position="fixed" color="primary">
@@ -37,15 +46,21 @@ const Game: FC<Props> = ({ setGameInitialized }) => {
               Quit
             </Button>
           </span>
-          <IconButton color="default" aria-label="help">
-            <Help />
-          </IconButton>
+          <motion.div className="motion-container" onClick={onMotionClick}>
+            <IconButton color="default" aria-label="help">
+              <Help />
+            </IconButton>
+          </motion.div>
         </Toolbar>
       </AppBar>
       <Attempts />
 
       {/* dragdrop */}
       <DragDrop setDisplayWrongCodeMessage={setDisplayWrongCodeMessage} />
+      {/* help window */}
+      <AnimatePresence initial={false} exitBeforeEnter={true}>
+        {helpOpen && <HelpComponent handleClose={() => setHelpOpen(false)} />}
+      </AnimatePresence>
     </div>
   );
 };
