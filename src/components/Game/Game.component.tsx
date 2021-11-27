@@ -1,6 +1,7 @@
 import { FC, useState, useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../../App/hooks";
-import { setCode } from "../../features/code/code.slice";
+import { resetCode, setCode } from "../../features/code/code.slice";
+import { resetColours } from "../../features/inputs/inputs.slice";
 import { generateCode } from "./utils";
 import { initialOutputs } from "../../initialData";
 import Attempts from "../Attempts/Attempts.component";
@@ -24,11 +25,14 @@ const Game: FC<Props> = ({ setGameInitialized }) => {
 
   useEffect(() => {
     dispatch(setCode(generateCode(Object.keys(inputs), initialOutputs)));
+    return () => {
+      dispatch(resetCode());
+      dispatch(resetColours());
+    };
   }, []);
 
   const handleClick = () => {
     setGameInitialized(false);
-    dispatch(setCode(null));
   };
 
   const onMotionClick = () => {

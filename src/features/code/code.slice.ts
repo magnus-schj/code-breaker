@@ -25,8 +25,15 @@ export const codeSlice = createSlice({
     addAttempt(state, { payload }) {
       state.attempts.push(payload);
     },
+    resetCode(state) {
+      state.code = initialState.code;
+      state.codeBroken = initialState.codeBroken;
+      state.numTries = initialState.numTries;
+      state.attempts = initialState.attempts;
+      state.limit = initialState.limit;
+    },
   },
 });
 
-export const { setCode, setCodeBroken, incrementTries, addAttempt } =
+export const { setCode, setCodeBroken, incrementTries, addAttempt, resetCode } =
   codeSlice.actions;

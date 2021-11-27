@@ -26,7 +26,15 @@ export const inputsSlice = createSlice({
       state[destKey].hsl = source.hsl;
       state[destKey].name = source.name;
     },
+    resetColours(state) {
+      state.zero = { hsl: null, name: null, index: 0 };
+      state.one = { hsl: null, name: null, index: 1 };
+      state.two = { hsl: null, name: null, index: 2 };
+      state.three = { hsl: null, name: null, index: 3 };
+      state.four = { hsl: null, name: null, index: 4 };
+    },
   },
 });
 
-export const { addColour, removeColour, swapColours } = inputsSlice.actions;
+export const { addColour, removeColour, swapColours, resetColours } =
+  inputsSlice.actions;

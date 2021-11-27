@@ -27,27 +27,27 @@ export const initialOutputs: InitialOutputs = {
 
 // inputs
 export const inputsData: InputsData = {
-  [v4()]: {
+  zero: {
     hsl: null,
     name: null,
     index: 0,
   },
-  [v4()]: {
+  one: {
     hsl: null,
     name: null,
     index: 1,
   },
-  [v4()]: {
+  two: {
     hsl: null,
     name: null,
     index: 2,
   },
-  [v4()]: {
+  three: {
     hsl: null,
     name: null,
     index: 3,
   },
-  [v4()]: {
+  four: {
     hsl: null,
     name: null,
     index: 4,
