@@ -1,4 +1,7 @@
 import { Colour, InitialOutputs } from "../../interfaces";
+import DragDrop from "../DragDrop/DragDrop.component";
+import GameOver from "../GameOver.component";
+import Victory from "../Victory.component";
 
 export const generateCode = (keys: string[], colours: InitialOutputs) => {
   const code: InitialOutputs = {};
@@ -20,4 +23,10 @@ export const generateCode = (keys: string[], colours: InitialOutputs) => {
     i++;
   }
   return code;
+};
+
+// decides wherever to render the inputs and outputs, a game over screen or victory screen
+export const renderDragDrop = (gameOver: boolean, codeBroken: boolean) => {
+  if (codeBroken) return <Victory />;
+  return gameOver ? <GameOver /> : <DragDrop />;
 };

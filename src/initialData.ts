@@ -1,5 +1,4 @@
 import { InitialOutputs, InputsData } from "./interfaces";
-import { v4 } from "uuid";
 
 // available colours
 export const initialOutputs: InitialOutputs = {

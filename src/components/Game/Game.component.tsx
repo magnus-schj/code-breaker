@@ -2,7 +2,7 @@ import { FC, useState, useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../../App/hooks";
 import { resetCode, setCode } from "../../features/code/code.slice";
 import { resetColours } from "../../features/inputs/inputs.slice";
-import { generateCode } from "./utils";
+import { generateCode, renderDragDrop } from "./utils";
 import { initialOutputs } from "../../initialData";
 import Attempts from "../Attempts/Attempts.component";
 import DragDrop from "../DragDrop/DragDrop.component";
@@ -10,9 +10,9 @@ import HelpComponent from "../Help/Help.component";
 
 import { AnimatePresence, motion } from "framer-motion";
 
-import { AppBar, Toolbar, Button, IconButton, Snackbar } from "@mui/material";
-import { Help, Close } from "@mui/icons-material";
-import Confetti from "../Confetti/Confetti.component";
+import { AppBar, Toolbar, Button, IconButton } from "@mui/material";
+import { Help } from "@mui/icons-material";
+import Victory from "../Victory.component";
 
 interface Props {
   setGameInitialized: React.Dispatch<React.SetStateAction<boolean>>;
@@ -23,6 +23,9 @@ const Game: FC<Props> = ({ setGameInitialized }) => {
   const [helpOpen, setHelpOpen] = useState(false);
 
   const inputs = useAppSelector((state) => state.inputs);
+  const codeSlice = useAppSelector((state) => state.code);
+
+  const gameOver = codeSlice.limit - codeSlice.numTries > 0 ? false : true;
 
   useEffect(() => {
     dispatch(setCode(generateCode(Object.keys(inputs), initialOutputs)));
@@ -58,8 +61,15 @@ const Game: FC<Props> = ({ setGameInitialized }) => {
       </AppBar>
       <Attempts />
 
-      {/* dragdrop */}
-      <DragDrop />
+      {renderDragDrop(gameOver, codeSlice.codeBroken)}
+      {/* {gameOver ? (
+        <h1>Game over</h1>
+      ) : codeSlice.codeBroken ? (
+        <Victory />
+      ) : (
+        <DragDrop />
+      )} */}
+
       {/* help window */}
       <AnimatePresence initial={false} exitBeforeEnter={true}>
         {helpOpen && <HelpComponent handleClose={() => setHelpOpen(false)} />}
