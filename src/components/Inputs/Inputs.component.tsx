@@ -1,4 +1,4 @@
-import React, { Dispatch, FC, SetStateAction } from "react";
+import React, { FC } from "react";
 import { Droppable, Draggable } from "react-beautiful-dnd";
 import { useAppDispatch, useAppSelector } from "../../App/hooks";
 
@@ -11,6 +11,7 @@ import {
   addAttempt,
 } from "../../features/code/code.slice";
 import { checkIfCodeBroken, createAttempt } from "./inputs.utils";
+import { resetColours } from "../../features/inputs/inputs.slice";
 interface Props {
   allInputsFilled: boolean;
 }
@@ -28,6 +29,7 @@ const Inputs: FC<Props> = ({ allInputsFilled }) => {
     // ? todo: remove wrongInputMessage
     if (codeSlice.codeBroken) return;
     dispatch(incrementTries());
+    dispatch(resetColours());
     const { code } = codeSlice;
     const isCodeBroken = checkIfCodeBroken(inputs, code);
 

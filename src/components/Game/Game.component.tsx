@@ -12,6 +12,7 @@ import { AnimatePresence, motion } from "framer-motion";
 
 import { AppBar, Toolbar, Button, IconButton, Snackbar } from "@mui/material";
 import { Help, Close } from "@mui/icons-material";
+import Confetti from "../Confetti/Confetti.component";
 
 interface Props {
   setGameInitialized: React.Dispatch<React.SetStateAction<boolean>>;
@@ -36,7 +37,6 @@ const Game: FC<Props> = ({ setGameInitialized }) => {
   };
 
   const onMotionClick = () => {
-    console.log(helpOpen);
     setHelpOpen(!helpOpen);
   };
 
