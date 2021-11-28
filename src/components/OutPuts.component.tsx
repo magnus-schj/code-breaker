@@ -13,6 +13,8 @@ const Outputs: FC<Props> = () => {
     <div
       style={{
         display: "flex",
+        flexWrap: "wrap",
+        justifyContent: "center",
       }}
     >
       {Object.entries(initialOutputs).map(([key, { hsl }], i) => (

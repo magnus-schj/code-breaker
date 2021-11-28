@@ -1,12 +1,15 @@
 import { FC, useState, useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../../App/hooks";
-import { setCode } from "../../features/code/code.slice";
+import { resetCode, setCode } from "../../features/code/code.slice";
+import { resetColours } from "../../features/inputs/inputs.slice";
+import { generateCode, renderDragDrop } from "./utils";
 import { initialOutputs } from "../../initialData";
+import Attempts from "../Attempts/Attempts.component";
+import HelpComponent from "../Help/Help.component";
+
+import { AnimatePresence, motion } from "framer-motion";
 
 import { AppBar, Toolbar, Button, IconButton } from "@mui/material";
-import { generateCode } from "./utils";
-import Attempts from "../Attempts/Attempts.component";
-import DragDrop from "../DragDrop/DragDrop.component";
 import { Help } from "@mui/icons-material";
 
 interface Props {
@@ -15,17 +18,27 @@ interface Props {
 const Game: FC<Props> = ({ setGameInitialized }) => {
   const dispatch = useAppDispatch();
 
-  const [displayWrongCodeMessage, setDisplayWrongCodeMessage] = useState(false);
+  const [helpOpen, setHelpOpen] = useState(false);
 
   const inputs = useAppSelector((state) => state.inputs);
+  const codeSlice = useAppSelector((state) => state.code);
+
+  const gameOver = codeSlice.limit - codeSlice.numTries > 0 ? false : true;
 
   useEffect(() => {
     dispatch(setCode(generateCode(Object.keys(inputs), initialOutputs)));
+    return () => {
+      dispatch(resetCode());
+      dispatch(resetColours());
+    };
   }, []);
 
   const handleClick = () => {
     setGameInitialized(false);
-    dispatch(setCode(null));
+  };
+
+  const onMotionClick = () => {
+    setHelpOpen(!helpOpen);
   };
 
   return (
@@ -37,15 +50,21 @@ const Game: FC<Props> = ({ setGameInitialized }) => {
               Quit
             </Button>
           </span>
-          <IconButton color="default" aria-label="help">
-            <Help />
-          </IconButton>
+          <motion.div className="motion-container" onClick={onMotionClick}>
+            <IconButton color="default" aria-label="help">
+              <Help />
+            </IconButton>
+          </motion.div>
         </Toolbar>
       </AppBar>
       <Attempts />
 
-      {/* dragdrop */}
-      <DragDrop setDisplayWrongCodeMessage={setDisplayWrongCodeMessage} />
+      {renderDragDrop(gameOver, codeSlice.codeBroken)}
+
+      {/* help window */}
+      <AnimatePresence initial={false} exitBeforeEnter={true}>
+        {helpOpen && <HelpComponent handleClose={() => setHelpOpen(false)} />}
+      </AnimatePresence>
     </div>
   );
 };

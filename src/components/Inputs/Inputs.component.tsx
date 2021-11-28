@@ -1,4 +1,4 @@
-import React, { Dispatch, FC, SetStateAction } from "react";
+import React, { FC } from "react";
 import { Droppable, Draggable } from "react-beautiful-dnd";
 import { useAppDispatch, useAppSelector } from "../../App/hooks";
 
@@ -11,12 +11,12 @@ import {
   addAttempt,
 } from "../../features/code/code.slice";
 import { checkIfCodeBroken, createAttempt } from "./inputs.utils";
+import { resetColours } from "../../features/inputs/inputs.slice";
 interface Props {
   allInputsFilled: boolean;
-  setDisplayWrongCodeMessage: Dispatch<SetStateAction<boolean>>;
 }
 
-const Inputs: FC<Props> = ({ allInputsFilled, setDisplayWrongCodeMessage }) => {
+const Inputs: FC<Props> = ({ allInputsFilled }) => {
   // dispatch and selector
   const dispatch = useAppDispatch();
   const inputs = useAppSelector((state) => state.inputs);
@@ -28,15 +28,13 @@ const Inputs: FC<Props> = ({ allInputsFilled, setDisplayWrongCodeMessage }) => {
   const handleClick = () => {
     // ? todo: remove wrongInputMessage
     if (codeSlice.codeBroken) return;
-    setDisplayWrongCodeMessage(false);
     dispatch(incrementTries());
+    dispatch(resetColours());
     const { code } = codeSlice;
     const isCodeBroken = checkIfCodeBroken(inputs, code);
 
     createAttempt(codeSlice, inputs, (obj) => dispatch(addAttempt(obj)));
-    isCodeBroken
-      ? dispatch(setCodeBroken(isCodeBroken))
-      : setDisplayWrongCodeMessage(true);
+    isCodeBroken && dispatch(setCodeBroken(isCodeBroken));
   };
   return (
     <div

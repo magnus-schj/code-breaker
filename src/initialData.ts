@@ -1,53 +1,65 @@
 import { InitialOutputs, InputsData } from "./interfaces";
-import { v4 } from "uuid";
 
 // available colours
 export const initialOutputs: InitialOutputs = {
-  purple: {
-    hsl: "hsl(280, 83%, 53%)",
-    name: "purple",
-  },
   pink: {
-    hsl: "hsl(329, 83%, 53%)",
+    hsl: "hsl(315, 83%, 53%)",
     name: "pink",
   },
-  red: {
-    hsl: "hsl(354, 83%, 53%)",
-    name: "red",
+  purple: {
+    hsl: "hsl(270, 83%, 53%)",
+    name: "purple",
   },
-  yellow: {
-    hsl: "hsl(400, 83%, 53%)",
-    name: "yellow",
+  blue: {
+    hsl: "hsl(225, 83%, 53%)",
+    name: "blue",
+  },
+  skyBlue: {
+    hsl: "hsl(180, 83%, 53%)",
+    name: "skyBlue",
+  },
+
+  lime: {
+    hsl: "hsl(135, 83%, 53%)",
+    name: "lime",
   },
   green: {
-    hsl: "hsl(450, 83%, 53%)",
+    hsl: "hsl(90, 83%, 53%)",
     name: "green",
+  },
+  yellow: {
+    hsl: "hsl(45, 83%, 53%)",
+    name: "yellow",
+  },
+  red: {
+    hsl: "hsl(360, 83%, 53%)",
+    name: "red",
   },
 };
 
 // inputs
 export const inputsData: InputsData = {
-  [v4()]: {
+  zero: {
     hsl: null,
     name: null,
     index: 0,
   },
-  [v4()]: {
+  one: {
     hsl: null,
     name: null,
     index: 1,
   },
-  [v4()]: {
+  two: {
     hsl: null,
     name: null,
     index: 2,
   },
-  [v4()]: {
+  three: {
     hsl: null,
     name: null,
     index: 3,
   },
-  [v4()]: {
+  four: {
     hsl: null,
     name: null,
     index: 4,
