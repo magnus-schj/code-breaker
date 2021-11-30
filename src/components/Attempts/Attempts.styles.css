@@ -1,0 +1,14 @@
+.square-container {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 40%;
+}
+.colour-attempt {
+  margin-left: 0;
+  margin-right: 0.5rem;
+}
+.attempt {
+  display: flex;
+  justify-content: space-between;
+}
