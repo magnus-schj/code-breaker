@@ -15,7 +15,6 @@ export const inputsSlice = createSlice({
       state[payload].name = null;
     },
     swapColours(state, { payload }) {
-      console.log(`payload`, payload);
       const {
         source: [sourceKey, source],
         dest: [destKey, dest],

@@ -24,7 +24,7 @@ export const initialOutputs: InitialOutputs = {
     name: "lime",
   },
   green: {
-    hsl: "hsl(90, 83%, 53%)",
+    hsl: "hsl(90, 83%, 30%)",
     name: "green",
   },
   yellow: {

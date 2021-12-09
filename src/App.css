@@ -15,17 +15,3 @@
   justify-content: center;
   margin-top: clamp(5rem, 40%, 8rem);
 }
-
-/* ------------------------------ */
-.attempt {
-  display: flex;
-  justify-content: space-between;
-}
-
-.history {
-  display: flex;
-  align-items: flex-start;
-}
-.attempt-colours {
-  display: flex;
-}
