@@ -1,10 +1,14 @@
 import React, { FC } from "react";
 import Typography from "@mui/material/Typography";
-import Confetti from "./Confetti/Confetti.component";
+import { useMediaQuery } from "@mui/material";
 
 interface Props {}
 
 const Victory: FC<Props> = () => {
+  const pad = useMediaQuery("(max-width:714px");
+  const phone = useMediaQuery("(max-width:380px");
+
+  const variant = phone ? "h6" : pad ? "h2" : "h1";
   return (
     <div
       style={{
@@ -14,10 +18,9 @@ const Victory: FC<Props> = () => {
         justifyContent: "center",
       }}
     >
-      <Typography variant="h1" color="initial">
+      <Typography variant={variant} color="initial">
         Congratulations! You won!
       </Typography>
-      <Confetti />
     </div>
   );
 };

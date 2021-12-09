@@ -7,6 +7,7 @@ const initialState: CodeSlice = {
   numTries: 0,
   attempts: [],
   limit: 16,
+  message: "Is it fun winning knowing you cheated?",
 };
 
 export const codeSlice = createSlice({

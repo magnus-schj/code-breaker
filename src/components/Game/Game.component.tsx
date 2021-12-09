@@ -11,6 +11,7 @@ import { AnimatePresence, motion } from "framer-motion";
 
 import { AppBar, Toolbar, Button, IconButton } from "@mui/material";
 import { Help } from "@mui/icons-material";
+import Confetti from "../Confetti/Confetti.component";
 
 interface Props {
   setGameInitialized: React.Dispatch<React.SetStateAction<boolean>>;
@@ -43,6 +44,7 @@ const Game: FC<Props> = ({ setGameInitialized }) => {
 
   return (
     <div className="game">
+      {codeSlice.codeBroken && <Confetti />}
       <AppBar position="fixed" color="primary">
         <Toolbar>
           <span style={{ flexGrow: 1 }}>

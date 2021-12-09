@@ -40,6 +40,7 @@ const Attempts: FC<Props> = () => {
     for (let i = 0; i < num; i++) {
       const element = (
         <Paper
+          elevation={2}
           key={i}
           style={{
             margin: "0.2rem",
