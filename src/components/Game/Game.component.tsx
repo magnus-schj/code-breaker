@@ -34,6 +34,7 @@ const Game: FC<Props> = ({ setGameInitialized }) => {
       style={{
         background: theme.palette.background.default,
         paddingTop: "3rem",
+        minHeight: "100vh",
       }}
     >
       {codeSlice.codeBroken && <Confetti />}

@@ -10,7 +10,13 @@ const Root: FC<Props> = () => {
   const [gameInitialized, setGameInitialized] = useState(false);
 
   return (
-    <div className="App">
+    <div
+      style={{
+        height: "100vh",
+        paddingTop: "4rem",
+        background: theme.palette.background.default,
+      }}
+    >
       <Header
         gameInitialized={gameInitialized}
         setGameInitialized={setGameInitialized}
