@@ -9,7 +9,7 @@ import HelpComponent from "../Help/Help.component";
 
 import { AnimatePresence, motion } from "framer-motion";
 
-import { AppBar, Toolbar, Button, IconButton } from "@mui/material";
+import { AppBar, Toolbar, Button, IconButton, useTheme } from "@mui/material";
 import { Help } from "@mui/icons-material";
 import Confetti from "../Confetti/Confetti.component";
 
@@ -17,6 +17,7 @@ interface Props {
   setGameInitialized: React.Dispatch<React.SetStateAction<boolean>>;
 }
 const Game: FC<Props> = ({ setGameInitialized }) => {
+  const theme = useTheme();
   const dispatch = useAppDispatch();
 
   const inputs = useAppSelector((state) => state.inputs);
@@ -33,7 +34,12 @@ const Game: FC<Props> = ({ setGameInitialized }) => {
   }, []);
 
   return (
-    <div className="game">
+    <div
+      style={{
+        background: theme.palette.background.default,
+        paddingTop: "3rem",
+      }}
+    >
       {codeSlice.codeBroken && <Confetti />}
 
       <Attempts />

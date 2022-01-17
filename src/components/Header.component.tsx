@@ -1,5 +1,5 @@
 import { Help } from "@mui/icons-material";
-import { AppBar, Toolbar, Button, IconButton } from "@mui/material";
+import { AppBar, Toolbar, Button, IconButton, useTheme } from "@mui/material";
 import { AnimatePresence, motion } from "framer-motion";
 import React, { FC, useContext, useState } from "react";
 import { ThemeContext } from "../ThemeContext";
@@ -12,6 +12,7 @@ interface Props {
 }
 
 const Header: FC<Props> = ({ gameInitialized, setGameInitialized }) => {
+  const theme = useTheme();
   const [helpOpen, setHelpOpen] = useState(false);
   const handleClick = () => {
     setGameInitialized(false);
@@ -22,11 +23,22 @@ const Header: FC<Props> = ({ gameInitialized, setGameInitialized }) => {
   };
   return (
     <>
-      <AppBar position="fixed" color="primary">
+      <AppBar
+        position="fixed"
+        sx={{
+          background: theme.palette.primary.main,
+        }}
+      >
         <Toolbar>
           <span style={{ flexGrow: 1 }}>
             {gameInitialized && (
-              <Button onClick={handleClick} variant="contained">
+              <Button
+                sx={{
+                  background: theme.palette.secondary.main,
+                }}
+                onClick={handleClick}
+                variant="contained"
+              >
                 Quit
               </Button>
             )}

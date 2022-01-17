@@ -22,7 +22,7 @@ const Root: FC<Props> = () => {
           className="title-screen"
           style={{ background: theme.palette.background.default }}
         >
-          <Typography variant="h3" color="initial">
+          <Typography variant="h3" color={theme.palette.text.primary}>
             Code breaker
           </Typography>
           <div className="button-container">
@@ -34,6 +34,7 @@ const Root: FC<Props> = () => {
                 padding: "1rem",
                 minWidth: "50vw",
                 marginTop: "2rem",
+                background: theme.palette.primary.main,
               }}
             >
               Start game
@@ -52,6 +53,7 @@ const Root: FC<Props> = () => {
                 sx={{
                   minWidth: "100%",
                   padding: "1rem",
+                  background: theme.palette.primary.main,
                 }}
               >
                 Source
