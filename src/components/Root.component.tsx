@@ -1,12 +1,12 @@
-import { Typography, Button } from "@mui/material";
+import { Typography, Button, useTheme } from "@mui/material";
 import React, { FC, useState } from "react";
-import { theme } from "../themes";
 import Game from "./Game/Game.component";
 import Header from "./Header.component";
 
 interface Props {}
 
 const Root: FC<Props> = () => {
+  const theme = useTheme();
   const [gameInitialized, setGameInitialized] = useState(false);
 
   return (

@@ -4,7 +4,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import React, { FC, useContext, useState } from "react";
 import { ThemeContext } from "../ThemeContext";
 import HelpComponent from "./Help/Help.component";
-import ThemeSwitch from "./ThemeSwitch.component";
+import ThemeButton from "./ThemeButton.component";
 
 interface Props {
   gameInitialized: boolean;
@@ -36,7 +36,7 @@ const Header: FC<Props> = ({ gameInitialized, setGameInitialized }) => {
               <Help />
             </IconButton>
           </motion.div>
-          <ThemeSwitch />
+          <ThemeButton />
         </Toolbar>
       </AppBar>
       {/* help window */}
