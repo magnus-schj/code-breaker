@@ -1,9 +1,9 @@
 import { Help } from "@mui/icons-material";
-import { AppBar, Toolbar, Button, IconButton } from "@mui/material";
+import { AppBar, Toolbar, Button, IconButton, useTheme } from "@mui/material";
 import { AnimatePresence, motion } from "framer-motion";
-import React, { FC, useState } from "react";
+import React, { FC, useContext, useState } from "react";
 import HelpComponent from "./Help/Help.component";
-import ThemeSwitch from "./ThemeSwitch.component";
+import ThemeButton from "./ThemeButton.component";
 
 interface Props {
   gameInitialized: boolean;
@@ -11,6 +11,7 @@ interface Props {
 }
 
 const Header: FC<Props> = ({ gameInitialized, setGameInitialized }) => {
+  const theme = useTheme();
   const [helpOpen, setHelpOpen] = useState(false);
   const handleClick = () => {
     setGameInitialized(false);
@@ -21,11 +22,25 @@ const Header: FC<Props> = ({ gameInitialized, setGameInitialized }) => {
   };
   return (
     <>
-      <AppBar position="fixed" color="primary">
+      <AppBar
+        position="fixed"
+        sx={{
+          background: theme.palette.primary.main,
+        }}
+      >
         <Toolbar>
           <span style={{ flexGrow: 1 }}>
             {gameInitialized && (
-              <Button onClick={handleClick} variant="contained">
+              <Button
+                sx={{
+                  background: theme.palette.secondary.main,
+                  "&:hover": {
+                    background: theme.palette.secondary.light,
+                  },
+                }}
+                onClick={handleClick}
+                variant="contained"
+              >
                 Quit
               </Button>
             )}
@@ -35,7 +50,7 @@ const Header: FC<Props> = ({ gameInitialized, setGameInitialized }) => {
               <Help />
             </IconButton>
           </motion.div>
-          <ThemeSwitch />
+          <ThemeButton />
         </Toolbar>
       </AppBar>
       {/* help window */}

@@ -2,7 +2,7 @@ import React, { FC } from "react";
 import { Droppable, Draggable } from "react-beautiful-dnd";
 import { useAppDispatch, useAppSelector } from "../../App/hooks";
 
-import { Button, Paper, useMediaQuery } from "@mui/material";
+import { Button, Paper, useMediaQuery, useTheme } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import {
   codeSlice,
@@ -17,6 +17,8 @@ interface Props {
 }
 
 const Inputs: FC<Props> = ({ allInputsFilled }) => {
+  // theme
+  const theme = useTheme();
   // dispatch and selector
   const dispatch = useAppDispatch();
   const inputs = useAppSelector((state) => state.inputs);
@@ -78,6 +80,7 @@ const Inputs: FC<Props> = ({ allInputsFilled }) => {
             height: belowBreakpoint ? "3rem" : "6rem",
             width: belowBreakpoint ? "3rem" : "6rem",
             margin: belowBreakpoint ? "1" : "2rem",
+            background: theme.palette.background.paper,
           }}
           key={key}
         >
@@ -92,6 +95,7 @@ const Inputs: FC<Props> = ({ allInputsFilled }) => {
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
+                    background: theme.palette.background.paper,
                   }}
                 >
                   {hsl && (
@@ -134,6 +138,9 @@ const Inputs: FC<Props> = ({ allInputsFilled }) => {
             onClick={handleClick}
             variant="contained"
             disabled={codeSlice.codeBroken}
+            sx={{
+              background: theme.palette.primary.main,
+            }}
           >
             Submit
           </Button>
