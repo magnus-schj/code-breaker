@@ -2,9 +2,13 @@ import { FC, Key } from "react";
 import { useAppSelector } from "../../App/hooks";
 import "./Attempts.styles.css";
 import { Box, Paper, Typography, useMediaQuery } from "@mui/material";
-import { makeStyles } from "@mui/styles";
+import { DefaultTheme, makeStyles } from "@mui/styles";
 
-const useStyles = makeStyles((theme) => ({
+interface Theme extends DefaultTheme {
+  palette: { background: { paper: string } };
+}
+
+const useStyles = makeStyles((theme: Theme) => ({
   root: {
     minHeight: "45vh",
     width: "80%",
