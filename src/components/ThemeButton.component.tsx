@@ -14,7 +14,7 @@ const ThemeButton: FC<Props> = () => {
 
   return (
     <IconButton onClick={() => setDarkMode(!darkMode)}>
-      {darkMode ? <Brightness2Icon /> : <WbSunnyIcon />}
+      {darkMode ? <WbSunnyIcon /> : <Brightness2Icon />}
     </IconButton>
   );
 };
