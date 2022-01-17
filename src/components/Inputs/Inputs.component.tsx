@@ -138,6 +138,9 @@ const Inputs: FC<Props> = ({ allInputsFilled }) => {
             onClick={handleClick}
             variant="contained"
             disabled={codeSlice.codeBroken}
+            sx={{
+              background: theme.palette.primary.main,
+            }}
           >
             Submit
           </Button>

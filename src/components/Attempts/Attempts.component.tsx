@@ -13,6 +13,7 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
     padding: "0.5rem",
     margin: "5rem auto",
+    background: theme.palette.background.paper,
   },
   attempts: {
     overflowY: "scroll",

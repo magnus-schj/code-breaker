@@ -1,6 +1,4 @@
 import { IconButton, useTheme } from "@mui/material";
-import { Switch } from "@mui/material";
-import { styled } from "@mui/styles";
 import React, { FC, useContext, useState } from "react";
 import { ThemeContext } from "../ThemeContext";
 import WbSunnyIcon from "@mui/icons-material/WbSunny";

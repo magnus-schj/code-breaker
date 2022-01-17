@@ -1,12 +1,13 @@
-import { createContext, SetStateAction, useState } from "react";
+import { useState } from "react";
 import "./App.css";
-import { Typography, Button, useMediaQuery, CssBaseline } from "@mui/material";
-import { ThemeProvider, useTheme } from "@mui/styles";
+import { CssBaseline } from "@mui/material";
+import { ThemeProvider } from "@mui/styles";
 import Root from "./components/Root.component";
 import { lightTheme, darkTheme } from "./themes";
 import { ThemeContext } from "./ThemeContext";
 
 function App() {
+  // state
   const [darkMode, setDarkMode] = useState(false);
   const stateObject = { darkMode, setDarkMode };
 

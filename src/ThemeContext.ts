@@ -1,3 +1,8 @@
-import { createContext } from "react";
+import { createContext, useState } from "react";
 
-export const ThemeContext = createContext(null);
+interface ThemeContextInterface {
+  darkMode: boolean;
+  setDarkMode: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+export const ThemeContext = createContext<ThemeContextInterface | null>(null);

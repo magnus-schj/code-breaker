@@ -2,7 +2,6 @@ import { Help } from "@mui/icons-material";
 import { AppBar, Toolbar, Button, IconButton, useTheme } from "@mui/material";
 import { AnimatePresence, motion } from "framer-motion";
 import React, { FC, useContext, useState } from "react";
-import { ThemeContext } from "../ThemeContext";
 import HelpComponent from "./Help/Help.component";
 import ThemeButton from "./ThemeButton.component";
 
@@ -35,6 +34,9 @@ const Header: FC<Props> = ({ gameInitialized, setGameInitialized }) => {
               <Button
                 sx={{
                   background: theme.palette.secondary.main,
+                  "&:hover": {
+                    background: theme.palette.secondary.light,
+                  },
                 }}
                 onClick={handleClick}
                 variant="contained"

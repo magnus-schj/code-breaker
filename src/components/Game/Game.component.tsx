@@ -5,12 +5,8 @@ import { resetColours } from "../../features/inputs/inputs.slice";
 import { generateCode, renderDragDrop } from "./utils";
 import { initialOutputs } from "../../initialData";
 import Attempts from "../Attempts/Attempts.component";
-import HelpComponent from "../Help/Help.component";
 
-import { AnimatePresence, motion } from "framer-motion";
-
-import { AppBar, Toolbar, Button, IconButton, useTheme } from "@mui/material";
-import { Help } from "@mui/icons-material";
+import { useTheme } from "@mui/material";
 import Confetti from "../Confetti/Confetti.component";
 
 interface Props {
