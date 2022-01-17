@@ -1,7 +1,8 @@
 import { Help } from "@mui/icons-material";
 import { AppBar, Toolbar, Button, IconButton } from "@mui/material";
 import { AnimatePresence, motion } from "framer-motion";
-import React, { FC, useState } from "react";
+import React, { FC, useContext, useState } from "react";
+import { ThemeContext } from "../ThemeContext";
 import HelpComponent from "./Help/Help.component";
 import ThemeSwitch from "./ThemeSwitch.component";
 
