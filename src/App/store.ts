@@ -7,6 +7,7 @@ export const store = configureStore({
     inputs: inputsSlice.reducer,
     code: codeSlice.reducer,
   },
+  devTools: process.env.NODE_ENV === "development",
 });
 
 // Inferred type: {posts: PostsState, comments: CommentsState, users: UsersState}
