@@ -1,13 +1,19 @@
 import { useState } from "react";
 import "./App.css";
-import { Typography, Button } from "@mui/material";
+import { Typography, Button, useMediaQuery } from "@mui/material";
 import Game from "./components/Game/Game.component";
+import ThemeSwitch from "./components/ThemeSwitch.component";
+import Header from "./components/Header.component";
 
 function App() {
   const [gameInitialized, setGameInitialized] = useState(false);
 
   return (
     <div className="App">
+      <Header
+        gameInitialized={gameInitialized}
+        setGameInitialized={setGameInitialized}
+      />
       {gameInitialized ? (
         <Game setGameInitialized={setGameInitialized} />
       ) : (

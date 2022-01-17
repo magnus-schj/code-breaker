@@ -19,8 +19,6 @@ interface Props {
 const Game: FC<Props> = ({ setGameInitialized }) => {
   const dispatch = useAppDispatch();
 
-  const [helpOpen, setHelpOpen] = useState(false);
-
   const inputs = useAppSelector((state) => state.inputs);
   const codeSlice = useAppSelector((state) => state.code);
 
@@ -34,39 +32,13 @@ const Game: FC<Props> = ({ setGameInitialized }) => {
     };
   }, []);
 
-  const handleClick = () => {
-    setGameInitialized(false);
-  };
-
-  const onMotionClick = () => {
-    setHelpOpen(!helpOpen);
-  };
-
   return (
     <div className="game">
       {codeSlice.codeBroken && <Confetti />}
-      <AppBar position="fixed" color="primary">
-        <Toolbar>
-          <span style={{ flexGrow: 1 }}>
-            <Button onClick={handleClick} variant="contained">
-              Quit
-            </Button>
-          </span>
-          <motion.div className="motion-container" onClick={onMotionClick}>
-            <IconButton color="default" aria-label="help">
-              <Help />
-            </IconButton>
-          </motion.div>
-        </Toolbar>
-      </AppBar>
+
       <Attempts />
 
       {renderDragDrop(gameOver, codeSlice.codeBroken)}
-
-      {/* help window */}
-      <AnimatePresence initial={false} exitBeforeEnter={true}>
-        {helpOpen && <HelpComponent handleClose={() => setHelpOpen(false)} />}
-      </AnimatePresence>
     </div>
   );
 };

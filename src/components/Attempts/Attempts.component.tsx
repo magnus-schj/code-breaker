@@ -69,7 +69,11 @@ const Attempts: FC<Props> = () => {
       <Box className={classes.attempts}>
         {code.attempts.map(({ black, white, colours }, i) => (
           <div className="attempt" key={i}>
-            <Typography variant={iPadWidth ? "h5" : "h3"} color="initial">
+            <Typography
+              variant={iPadWidth ? "h5" : "h3"}
+              color="initial"
+              sx={{ margin: "1rem" }}
+            >
               {i + 1}:
             </Typography>
             <div className="square-container color-attempt">
