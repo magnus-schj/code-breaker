@@ -12,8 +12,14 @@ const ThemeButton: FC<Props> = () => {
 
   const { darkMode, setDarkMode } = themeContext;
 
+  const handleClick = () => {
+    // saves theme preference in localstorage and changes current state
+    localStorage.setItem("theme", !darkMode ? "dark" : "light");
+    setDarkMode(!darkMode);
+  };
+
   return (
-    <IconButton onClick={() => setDarkMode(!darkMode)}>
+    <IconButton onClick={handleClick}>
       {darkMode ? <WbSunnyIcon /> : <Brightness2Icon />}
     </IconButton>
   );
