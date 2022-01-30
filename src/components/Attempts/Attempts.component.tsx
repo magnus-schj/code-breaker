@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   attempts: {
     overflowY: "scroll",
-    height: "clamp(5rem,50%,100rem)",
+    height: "clamp(5rem,50%,45vh)",
     margin: "auto",
     paddingLeft: "0.6rem",
     width: "90%",
