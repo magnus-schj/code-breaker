@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 import { CssBaseline } from "@mui/material";
 import { ThemeProvider } from "@mui/styles";
@@ -7,8 +7,11 @@ import { lightTheme, darkTheme } from "./themes";
 import { ThemeContext } from "./ThemeContext";
 
 function App() {
+  // gets variable stored locally, decides on light or dark mode
+  const storedTheme = localStorage.getItem("theme");
+  const initialState = !storedTheme || storedTheme === "light" ? false : true;
   // state
-  const [darkMode, setDarkMode] = useState(false);
+  const [darkMode, setDarkMode] = useState(initialState);
   const stateObject = { darkMode, setDarkMode };
 
   return (
